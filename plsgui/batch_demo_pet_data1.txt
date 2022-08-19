@@ -1,0 +1,52 @@
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+prefix		demo	% prefix for session file and datamat file
+brain_region	0.25	% threshold or file name for brain region
+normalize	1	% normalize volume mean (keey 1 unless necessary)
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cond_name	c1	% condition 1 name
+cond_name	c2	% condition 2 name
+
+% ... following above pattern for more conditions
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+subj_file	/home/jimmy/p/petsim/s4/I_025.img	% subj 1 in cond 1
+subj_file	/home/jimmy/p/petsim/s3/I_019.img	% subj 2 in cond 1
+subj_file	/home/jimmy/p/petsim/s5/I_033.img	% subj 3 in cond 1
+
+subj_file	/home/jimmy/p/petsim/s4/I_026.img	% subj 1 in cond 2
+subj_file	/home/jimmy/p/petsim/s3/I_020.img	% subj 2 in cond 2
+subj_file	/home/jimmy/p/petsim/s5/I_034.img	% subj 3 in cond 2
+
+% ... following above pattern for more subjects (in conditions)
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+

@@ -1,0 +1,176 @@
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Result File Name Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Note: Result file must be listed first, and must follow the file
+%	 name format of xxxx_yyyyresult.mat, where xxxx stands for
+%	 "any result file name prefix" and yyyy stands for the name
+%	 of PLS module (either PET ERP fMRI BfMRI STRUCT or SmallFC).
+%	 File name is case sensitive on Unix or Linux computers.
+
+result_file	demo_fMRIresult.mat
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Result File Name End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Group Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+group_files	demo_fMRIsessiondata.mat demo2_fMRIsessiondata.mat demo3_fMRIsessiondata.mat	% group 1 
+
+% ... following above pattern for more groups
+
+	%%%%%%%%%%%%%%%%%%%%%%%
+	%  Group Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%
+	%  PLS Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Notes:
+%    1. Mean-Centering PLS
+%    2. Non-Rotated Task PLS (please also fill out contrast data below)
+%    3. Regular Behav PLS (please also fill out behavior data & name below)
+%    4. Multiblock PLS (please also fill out behavior data & name below)
+%    5. Non-Rotated Behav PLS (please also fill out contrast data and
+%	behavior data & name below)
+%    6. Non-Rotated Multiblock PLS (please also fill out contrast data and
+%	behavior data & name below)
+
+pls		1		% PLS Option (between 1 to 5, see above notes)
+
+%  Mean-Centering Type:
+%    0. Remove group condition means from conditon means within each group
+%    1. Remove grand condition means from each group condition mean
+%    2. Remove grand mean over all subjects and conditions
+%    3. Remove all main effects by subtracting condition and group means
+
+mean_type	0		% Mean-Centering Type (between 0 to 3, see above)
+
+%  Correlation Mode:
+%    0. Pearson correlation
+%    2. covaraince
+%    4. cosine angle
+%    6. dot product
+
+cormode		0		% Correlation Mode (can be 0,2,4,6, see above)
+
+num_perm	100		% Number of Permutation
+num_split	0		% Natasha Perm Split Half
+num_boot	500		% Number of Bootstrap
+boot_type	strat		% Either strat or nonstrat bootstrap type
+clim		95		% Confidence Level for Behavior PLS
+save_data	0		% Set to 1 to save stacked datamat
+
+	%%%%%%%%%%%%%%%%%%%%%
+	%  PLS Section End  %
+	%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Selection Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Notes: If you don't need to deselect conditions, just leave
+%  "selected_cond" & "selected_bcond" to be commented.
+
+%  First put k number of 1 after "selected_cond" keyword, where k is the
+%  number of conditions in the session/datamat. Then, replace with 0 for
+%  those conditions that you would like to deselect for any case except
+%  behavior block of multiblock PLS. e.g. If you have 3 conditions in 
+%  session/datamat, and you would like to deselect the 2nd condition, 
+%  then you should enter 1 0 1 after selected_cond.
+%
+%selected_cond	1 1		% you may want to comment this line
+
+%  First put k number of 1 after "selected_bcond" keyword, where k is the
+%  number of conditions in sessiondata file. Then, replace with 0 for
+%  those conditions that you would like to deselect only for behavior 
+%  block of multiblock PLS. e.g. If you have 3 conditions in 
+%  sessiondata file, and you would like to deselect the 2nd condition, 
+%  then you should enter 1 0 1 after selected_cond. you can not select 
+%  any conditions for "selected_bcond" that were deselected in 
+%  "selected_cond". e.g. in the above comments, you can not select the 
+%  2nd condition for "selected_bcond" because it was already deselected 
+%  in "selected_cond".
+%
+%selected_bcond	1 1		% you may want to comment this line
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Selection End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Contrast Data Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Notes: only list selected conditions (selected_cond)
+
+contrast_data	1 2		% contrast 1&2 for group 1 run1 condition 1
+contrast_data	3 4		% contrast 1&2 for group 1 run1 condition 2
+contrast_data	5 6		% contrast 1&2 for group 1 run2 condition 1
+contrast_data	7 8		% contrast 1&2 for group 1 run2 condition 2
+
+% ... following above pattern for more groups
+
+	%%%%%%%%%%%%%%%%%%%%%%%
+	%  Contrast Data End  %
+	%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Behavior Data Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Notes: only list selected conditions (selected_cond)
+
+behavior_data	11 12		% behavior for grp1 run1 cond1 sess1
+behavior_data	13 14		% behavior for grp1 run1 cond1 sess2
+behavior_data	15 16		% behavior for grp1 run1 cond1 sess3
+behavior_data	17 18		% behavior for grp1 run1 cond2 sess1
+behavior_data	19 20		% behavior for grp1 run1 cond2 sess2
+behavior_data	21 22		% behavior for grp1 run1 cond2 sess3
+
+behavior_data	31 32		% behavior for grp1 run2 cond1 sess1
+behavior_data	33 34		% behavior for grp1 run2 cond1 sess2
+behavior_data	35 36		% behavior for grp1 run2 cond1 sess3
+behavior_data	37 38		% behavior for grp1 run2 cond2 sess1
+behavior_data	39 40		% behavior for grp1 run2 cond2 sess2
+behavior_data	41 42		% behavior for grp1 run2 cond2 sess3
+
+% ... following above pattern for more groups
+
+	%%%%%%%%%%%%%%%%%%%%%%%
+	%  Behavior Data End  %
+	%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Behavior Name Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  Numbers of Behavior Name should match the Behavior Data above
+
+behavior_name	behav1 behav2
+
+	%%%%%%%%%%%%%%%%%%%%%%%
+	%  Behavior Name End  %
+	%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+

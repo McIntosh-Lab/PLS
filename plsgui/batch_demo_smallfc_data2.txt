@@ -1,0 +1,61 @@
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+prefix		demo2	% prefix for session file and datamat file
+dims		10 10	% dimension of rectangular functional connectivity
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cond_name	c1	% condition 1 name
+cond_name	c2	% condition 2 name
+cond_name	c3	% condition 2 name
+cond_name	c4	% condition 2 name
+
+% ... following above pattern for more conditions
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+subj_file	/home/jimmy/p/smallfc/s02/s02cond1.txt	% subj 1 in cond 1
+subj_file	/home/jimmy/p/smallfc/s04/s04cond1.txt	% subj 2 in cond 1
+subj_file	/home/jimmy/p/smallfc/s05/s05cond1.txt	% subj 3 in cond 1
+
+subj_file	/home/jimmy/p/smallfc/s02/s02cond2.txt	% subj 1 in cond 2
+subj_file	/home/jimmy/p/smallfc/s04/s04cond2.txt	% subj 2 in cond 2
+subj_file	/home/jimmy/p/smallfc/s05/s05cond2.txt	% subj 3 in cond 2
+
+subj_file	/home/jimmy/p/smallfc/s02/s02cond3.txt	% subj 1 in cond 3
+subj_file	/home/jimmy/p/smallfc/s04/s04cond3.txt	% subj 2 in cond 3
+subj_file	/home/jimmy/p/smallfc/s05/s05cond3.txt	% subj 3 in cond 3
+
+subj_file	/home/jimmy/p/smallfc/s02/s02cond4.txt	% subj 1 in cond 4
+subj_file	/home/jimmy/p/smallfc/s04/s04cond4.txt	% subj 2 in cond 4
+subj_file	/home/jimmy/p/smallfc/s05/s05cond4.txt	% subj 3 in cond 4
+
+% ... following above pattern for more subjects (in conditions)
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+

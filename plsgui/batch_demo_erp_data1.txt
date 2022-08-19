@@ -1,0 +1,83 @@
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+prefix		demo	% prefix for session file and datamat file
+prestim		0	% prestimulus baseline in millisecond
+interval	2	% digitization interval in millisecond
+
+%  Channel order and System ID can be obtained by running following program:
+%  [chan_order, system] = erp_select_chan
+%
+chan_order	73 51 72 53 20 23 102 104 94 96 140 132 57 59 134 135 108 110 81 126 112 100 62 63 35 36 68 69 84 85 61 49 44
+system_class	1
+system_type	1
+
+%  Notes: "binary_vendor" & "binary_endian" keywords are only used for
+%  binary ERP data. If you are using ASCII text ERP data, leave them to
+%  be commented, or put any invalid string values like "none" etc.
+
+%  If you are using binary ERP data, you can either enter proper string
+%  by yourself, or run program:
+%	read_eeg_format
+%  to obtain the binary_vendor (vendor name) or binary_endian
+%  (machineformat).
+%
+%  Valid binary_vendor are only "NeuroScan", "ANT", "EGI".
+%  Valid binary_endian are Matlab machineformat, they are: "ieee-le" or
+%  "l", "ieee-be" or "b", "ieee-le.l64" or "a", "ieee-be.l64" or "s", 
+%  "vaxd" or "d", "vaxg" or "g", "cray" or "c", and "native" or "n".
+%
+%binary_vendor	none
+%binary_endian	none
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cond_name	c1	% condition 1 name
+cond_name	c2	% condition 2 name
+
+% ... following above pattern for more conditions
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+chan_in_col	0	% set to 1 if num_channel = num_column for subj_file
+
+subj_file	/home/jimmy/p/erpsim/s19/S19B1N	% subj 1 in cond 1
+subj_file	/home/jimmy/p/erpsim/s17/S17B1N	% subj 2 in cond 1
+subj_file	/home/jimmy/p/erpsim/s04/S04b1n	% subj 3 in cond 1
+subj_file	/home/jimmy/p/erpsim/s06/S06b1n	% subj 4 in cond 1
+subj_file	/home/jimmy/p/erpsim/s05/S05b1n	% subj 5 in cond 1
+
+subj_file	/home/jimmy/p/erpsim/s19/S19B2N	% subj 1 in cond 2
+subj_file	/home/jimmy/p/erpsim/s17/S17B2N	% subj 2 in cond 2
+subj_file	/home/jimmy/p/erpsim/s04/S04b2n	% subj 3 in cond 2
+subj_file	/home/jimmy/p/erpsim/s06/S06b2n	% subj 4 in cond 2
+subj_file	/home/jimmy/p/erpsim/s05/S05b2n	% subj 5 in cond 2
+
+% ... following above pattern for more subjects (in conditions)
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+

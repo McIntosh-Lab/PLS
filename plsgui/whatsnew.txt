@@ -1,0 +1,2084 @@
+Version 6.1311050  November 5, 2013
+	1.	New:  computation change for "Single Condition Task
+		PLS". Therefore, please run such analysis again with
+		this latest version of PLS applications.
+	2.	Fix:  crash when you have more numbers of bootstrap
+		than what is limited by numbers of subject.
+
+Version 6.1306040  June 4, 2013
+	1.	New:  add "Use segment data" checkbox under Structural
+		PLS analysis window. By default, it is selected (i.e.
+		assuming that you are using segment data). If you are
+		not using segment data, you should deselect it.
+	2.	New:  change label by replace ucorr_prob & vcorr_prob
+		with p_braincorr & p_designcorr.
+
+Version 6.1305080  May 8, 2013
+	1.	New:  plscmd_cluster_report.m is provided to get
+		cluster information for command line PLS application
+		(i.e. pls_analysis.m under plscmd folder). The result
+		is not viewable by GUI application. If you have PLS
+		result file from GUI application (i.e. *result.mat),
+		you should use GUI, or create_cluster_report.m to
+		create cluster report, which can be viewed under GUI,
+		or view_cluster_report.m.
+
+Version 6.1305010  May 1, 2013
+	1.	Fix:  missing menus are added for multiblock PLS.
+
+Version 6.1304190  April 19, 2013
+	1.	New:  ucorr_prob and vcorr_probs from splithalf test
+		are displayed in "Design LV and Design scores Plot".
+	2.	New:  bootstrap type feature is temporarily disabled.
+	3.	Fix:  bug crashs single subject result.
+	4.	New:  User Guide for PLS Applications is modified.
+		http://research.baycrest.org/pls/UserGuide.htm
+
+Version 6.1304020  April 2, 2013
+	1.	Fix:  bug in single condition Mean-Centering PLS.
+
+Version 6.1303150  March 15, 2013
+	1.	Fix:  bug in 'session2sessiondata' when run it from
+		different folder.
+
+Version 6.1303010  March 1, 2013
+	1.	New:  An upgrade of PLS applications has been done on
+		29-OCT-2012. For certain reasons, we did not release
+		that new version until now. Therefore, I would like
+		to repeat some of the whatsnew contents that have 
+		been listed under Version 6.1210291 below.
+	2.	New:  Since PLS user interface will use Command-Line 
+		PLS to run all PLS analysis, folder plsgui and plscmd
+		must be kept under the same parent folder, and their
+		folder names (i.e. plsgui and plscmd) can not be 
+		changed.
+	3.	New:  session.mat / datamat.mat files are now combined
+		to a single sessiondata.mat file. To provide seamless
+		upgrade, a new program "session2sessiondata.m" is 
+		included. You can run this program to convert old 
+		session / datamat files to new sessiondata file, 
+		either for a single session or for entire folder. For
+		more information, please type:
+			help session2sessiondata
+	4.	New:  Command-Line PLS will take optional argument for
+		other parameters like num_permutation etc. For more
+		detail, please type:
+			help pls_analysis
+
+Version 6.1302280  February 28, 2013
+	1.	New:  When some conditions of behavior measures are
+		not available in behavior block of Multiblock PLS, the
+		brain data of those unavailable conditions will be
+		included in permutation loop.
+	2.	New:  "nonstrat" boot type is purely experimental,
+		do not select it unless you have good reason.
+
+Version 6.1302200  February 20, 2013
+	1.	New:  Brain data, not behavior data, is resampled for
+		splithalf permutation.
+	2.	New:  Non-Rotated PLS is changed back to old way (i.e.
+		to use un-normalized salience) for conventional 
+		bootstrap in order to avoid bootstrap ratio scaling 
+		problem.
+
+Version 6.1301160  January 16, 2013
+	1.	Fix:  Result window for correlation plot crash problem
+		for certain skewed data.
+
+Version 6.1301040  January 4, 2013
+	1.	New:  The electrode channel layout of MEG CTF-150 is
+		modified.
+
+Version 6.1212310  December 31, 2012
+	1.	New:  "non-rotated bootstrap" and "splithalf 
+		permutation" is linked, and "non-rotated bootstrap"
+		selection is removed.
+
+Version 6.1212060  December 6, 2012
+	1.	New:  If Number of Permutation Split is greater than
+		0, ucorr_prob_LV & vcorr_prob_LV will be displayed in
+		Permuted Singlar Values window.
+	2.	Fix:  A bug in new code (never published) to generate
+		bootstrap sample for method 3 & 5.
+
+Version 6.1211270  November 27, 2012
+	1.	Fix:  Possible inverse zoom problem after Matlab 7.4.
+
+Version 6.1211200  November 20, 2012
+	1.	New:  Removed unused fields compare_v, v_se, and 
+		zero_v_se from boot_result.
+
+Version 6.1211140  November 14, 2012
+	1.	Fix:  Within "parfor-loop", the figure command does
+		not work properly. So I have to use command window 
+		display, rather than progress bar figure, to show 
+		the steps of splithalf permutation.
+
+Version 6.1211130  November 13, 2012
+	1.	Fix:  Checked and made sure location inputs for text()
+		command are in double; otherwise MATLAB may crash.
+
+Version 6.1211120  November 12, 2012
+	1.	New:  If there are session / datamat files in current
+		folder, but there is no sessiondata file, it indicates
+		that this is probably an old PLS user, who is not aware
+		that the session / datamat files need to be combined to
+		sessiondata file. New plsgui & batch_plsgui will show
+		prompt message, if this user is trying to run analysis
+		or edit session profile.
+	2.	New:  After PLS detects the availability of parallel 
+		setting, now it will further detects whether matlabpool
+		is open. Only when matlabpool is open (i.e. the size
+		of pool is greater than 0), the "parfor-loop" will be
+		selected in splithalf permutation block. Otherwise,
+		regular "for-loop" will always be selected.
+
+Version 6.1211010  November 1, 2012
+	1.	New:  Program "session2sessiondata.m" can be applied
+		on both old session filename or session folder. For
+		example: session2sessiondata('.') will convert all 
+		the old session / datamat files in the current folder
+		to new sessiondata files. Note: old session / datamat
+		files will NOT be removed or modified.
+	2.	Fix:  Bug in splithalf_perm_par function.
+
+Version 6.1210290  October 29, 2012
+	1.	New:  Since PLSgui will use Command-Line PLS to run
+		all PLS analysis computations, folder plsgui and
+		folder plscmd must be kept under the same parent
+		folder.
+	2.	New:  session.mat / datamat.mat files are now combined
+		to a single sessiondata.mat file. To provide seamless
+		upgrade, a new program "session2sessiondata.m" is 
+		included in PLSgui. You can run this program to 
+		convert old session / datamat to new sessiondata. For
+		more information, please type help session2sessiondata
+	3.	New:  Command-Line PLS will take optional argument for
+		other parameters like num_permutation etc. Please type
+		help pls_analysis for more detail.
+	4.	New:  Natasa's features are included, which includes:
+		splithalf permutation, nonstrat bootstrap, non-rotated
+		bootstrap, non-rotated multiblock PLS, parallel option,
+		mean-centering type, correlation mode.
+	5.	New:  Command-Line cluster report programs are available
+		to create and view cluster report for both old and new
+		version of PLSgui result file.
+
+Version 5.1209101  September 10, 2012
+	1.	New: Will check percentage of brain region in image
+		volume before creating Structural datamat. If the
+		mask is larger than 25% of the volume, the program
+		will ask user whether to proceed or to stop and check
+		brain mask file.
+
+Version 5.1206281  June 28, 2012
+	1.	Fix: Disabled false alarm about 64-bit single precision
+		between MATLAB version 7.10 and 7.39.
+
+Version 5.1110251  October 25, 2011
+	1.	Fix: Structural label feature is now available even
+		there is no bootstrap test in result file.
+
+Version 5.1110202  October 20, 2011
+	1.	New: If the dimension of raw imaging data is 41x48x35,
+		"View 41x48x35 Structural Label" menu is added under 
+		"View" menu for fMRI result window; otherwise, if the
+		dimension of raw imaging data is not 41x48x35, you
+		won't see this menu. When this menu is checked, the 
+		label of structural map will be displayed on top of 
+		BLV or BSR area.
+
+Version 5.1109191  September 19, 2011
+	1.	New: Duration lenth can be entered for "Use HRF" feature
+		under "Blocked fMRI" session window. By default, it is
+		set to 0, which is for event-related response. For 
+		epoch-related response, you need to set the duration.
+	2.	New: In Generate Datamat window, now we have HRF1 and
+		HRF2. In HRF1, TR will be further divided into smaller
+		bin when calculating design matrix, and the default HRF
+		is SPM HRF. In HRF2, TR is always the smallest unit when
+		calculating design matrix, and the default HRF is GAMMA
+		function from AFNI's HRF.
+	3.	New: "Degree of Legendre Polynomials for regressors"
+		field is added. By default, it is 0, which provides a
+		single column of all ones. This is also a feature from
+		AFNI's HRF.
+	4.	PLS User Guide is also updated:
+		http://www.rotman-baycrest.on.ca/pls/UserGuide.htm
+
+Version 5.1105181  May 18, 2011
+	1.	Fix: Write permission will be checked before starting
+		PLS analysis.
+
+Version 5.1105121  May 12, 2011
+	1.	Add in FAQ: When "Use HRF" is selected, the order of 
+		slice must be sequential and ascending if you are
+		trying to use decimal number in "onsets" field.
+	2.	Add in FAQ: Get some value from "*result.mat" in MATLAB
+		command window.
+
+Version 5.1105052  May 5, 2011
+	1.	Fix: "Run Info" window crash.
+	2.	Fix: "HRF over run" window cannot bring to the front.
+	3.	Fix: "HRF over run" window display error for skipped scan.
+	4.	Fix: Message of "out of bound" scans for HRF fMRI.
+
+Version 5.1105021  May 2, 2011
+	1.	"Use HRF" selection box is available in Blocked fMRI
+		session profile window. This feature is actually
+		designed for Event Related fMRI. Since most of the
+		user interfaces are compatible with Blocked fMRI, I
+		have to build it on Blocked fMRI platform.
+	2.	By default, SPM's HRF model is used. However, you can
+		also design your own HRF model by clicking "Customize
+		HRF" button. You can either type 1-D vector in the
+		"Data:" field, or write your 1-D vector (all numbers)
+		in a text file and then load this text file. You can
+		also plot the convolved HRF by clicking 
+		"Plot Regressors" button.
+	3.	When you use HRF feature, there is no more necessary
+		to do "Normalize data with ref. scans", since the low
+		frequency drift is removed by SPM High Pass filter.
+		There is a selection box called "Use SPM ReML" in
+		"Create Datamat" window. If this box is selected (by
+		default), the voxel outlier over the run will also
+		be removed.
+	4.	While developing the "Use HRF" feature, I noticed some
+		buggy functions, and they have been taken cared in the
+		following manner: "Number of scans to be skipped" field
+		is moved to the "Edit Runs" window. "Run to be included"
+		field is removed. If you want to exclude the run, simply
+		open "Edit Runs" window, go to the run that you need to 
+		delete, and click Edit->Delete. "Slice to be ignored" 
+		field is also removed. We can pre-process the raw image
+		to remove those slices.
+
+Version 5.1102241  February 24, 2011
+	1.	Use 'round' instead of 'floor' to round the decimal
+		in fMRI onset time.
+
+Version 5.1102041  February 4, 2011
+	1.	Fixed a bug when loading a quaternion form NIfTI data.
+
+Version 5.1102011  February 1, 2011
+	1.	Fixed bugs in "Task PLS Brain Scores with CI" window
+		for Multiblock PLS. The analysis will need to be
+		re-run in order to see the fix.
+	2.	Added a function (dset2img.m) to create a simulated
+		4D NIfTI image and a corresponding brain region mask
+		from a SUMA's 1D.dset file in order to run PLS.
+	3.	Added a function (plsgui2dset.m) to extract BrainLV
+		/ BSRatio from PLS result to SUMA's 1D.dset files
+		in order to visualize the BrainLV result and BSRatio
+		result from SUMA.
+	4.	Added a function (fmri2dset.m) to extract fMRI datamat
+		to a SUMA's 1D.dset file for special SUMA processing.
+	5.	Added a function (dset2fmri.m) to update fMRI datamat
+		with the SUMA processed 1D.dset file.
+
+Version 5.1007191  July 19, 2010
+	1.	Added "Load from Batch" button in PLS analysis window.
+
+Version 5.1004262  April 26, 2010
+	1.	Added "Subject Amplitude for Given Timepoints" item
+		under "View" menu of ERP salience plot. This item
+		will bring a "Plot Detail" like window, which allows
+		you to plot the response of datamat value, and extract
+		multiple time points of the datamat value.
+
+Version 5.1003291  March 29, 2010
+	1.	Reversed the feature of checking timestamp in the
+		result file. Because it brings too many troubles,
+		the program will no longer warn you if you forget
+		to re-run the PLS after modifying the datamat. It
+		will be users' responsibility to re-run the PLS
+		whenever a datamat is changed.
+
+Version 5.1003081  March 8, 2010
+	1.	Added options for normalizing volume mean when using
+		batch file to create datamat.
+
+Version 5.1002191  February 19, 2010
+	1.	Fixed a bug of false alarm for duplicated bootstrap
+		order.
+
+Version 5.0912111  December 11, 2009
+	1.	Fixed a bug when reading a volume from 4D Analyze data.
+
+Version 5.0912081  December 8, 2009
+	1.	Add data check when using batch to create datamat.
+
+Version 5.0912072  December 7, 2009
+	1.	Since MATLAB allows less amount of data to be saved
+		by using '-append' switch than without using '-append'
+		switch, '-append' switch has been take away when saving
+		result files. However, the saving time will be a longer.
+		So, the "Save GUI Position" & "Save Display Setting"
+		under "Tools" menu of the first window is also taken
+		away.
+	2.	Fixed a scroll bar bug.
+
+Version 5.0912011  December 1, 2009
+	1.	Fixed a bug for Brain Score Plot crash when some
+		subjects are deselected in Structural PLS.
+
+Version 5.0910261  October 26, 2009
+	1.	Thanks to the feedback from Yunjo, and the recursion
+		limits is set to 100 for cluster report creating. On
+		telesto computer that I tested today, RecursionLimit
+		is set to 100 by default for all MATLAB versions 
+		lower than MATLAB 7.6 (R2008a), and it is set to 500
+		by default for MATLAB 7.6 & 7.8. However, with higher
+		recursion limits, 2 or more different clusters are
+		combined together unnecessary. This problem is solved
+		when RecursionLimit is set to 100 just for PLS.
+
+Version 5.0910111  October 11, 2009
+	1.	Fixed a bug in MRI behavior & multiblock PLS.
+
+Version 5.0910022  October 2, 2009
+	1.	Value of confidence level that is input by users
+		for bootstrap test is now saved in result file
+		under boot_result.Clim.
+	2.	Fixed several bugs that cause crash when displaying
+		result file.
+
+Version 5.0909171  September 17, 2009
+	1.	Single subject analysis with different number of
+		onsets among conditions can also be analyzed.
+
+Version 5.0908261  August 26, 2009
+	1.	Added "Task PLS Brain Scores with CI" feature for
+		Multiblock PLS analysis and its result window.
+		Like the one in Mean-Centering & Non-Rotate PLS,
+		you must run bootstrap test in order to get this
+		feature.
+
+Version 5.0908231  August 23, 2009
+	1.	Fixed a progress bar bug, which cause crash.
+
+Version 5.0908141  August 14, 2009
+	1.	Fixed a bug in using "RandStream" function, which
+		cause crash.
+
+Version 5.0908041  August 4, 2009
+	1.	Fixed a bug in selecting Cluster Report Options,
+		which does not allow any selection in some cases.
+
+Version 5.0907231  July 23, 2009
+	1.	Using "RandStream" instead of "rand('state')" to
+		control the state of MATLAB random functions in
+		MATLAB 7.8 (R2009a) and above.
+
+Version 5.0907221  July 22, 2009
+	1.	Voxel with NAN value will be marked as non-brain
+		area.
+
+Version 5.0907171  July 17, 2009
+	1.	Fixed ERP plot detail window crash problem for
+		new version of MATLAB.
+
+Version 5.0907162  July 16, 2009
+	1.	Added file format field in ERP session window, so
+		some data like ANT, NeuroScan, can be properly
+		extracted.
+
+Version 5.0907141  July 14, 2009
+	1.	Fixed a bug to select a file name in subject select
+		window.
+
+Version 5.0907131  July 13, 2009
+	1.	If you are using MATLAB 7.4 (R2007a) and above, the
+		warning message for MATLAB Bug Report ID 268001
+		regarding to the single precision computation on
+		64-bit Intel based system is now removed.
+
+Version 5.0906092  June 9, 2009
+	1.	Program "flip_plsgui.m" is created and only served
+		as a remedy for those who missed orientation check
+		during datamat creation. Before a datamat is created,
+		please always remember to use the existing "Check 
+		Image Orientation" button in "Create Datamat" window
+		of "plsgui" program to do the flipping. If you are 
+		using "batch_plsgui" program, you can flip raw images
+		using "flip_lr.m" program. This program is in the same
+		folder as "batch_plsgui" and "plsgui" program. By the
+		way, "flip_lr.m" will save image in NIfTI format.
+
+Version 5.0905112  May 11, 2009
+	1.	Added a new feature under "Tool" menu of ERP display
+		window to export the plotted wave data and the time
+		information inside the window that is clicked.
+	2.	Fixed a bug in displaying Condition Average and
+		Condition Difference for ERP module.
+
+Version 5.0904241  April 24, 2009
+	1.	For Task PLS bootstrap test, variable 'b_scores2'
+		(or 'brainscores2') is saved under 'boot_result'
+		structure. This Brain Score 2 here is created with
+		mean-centered datamat, which is used in the "Task
+		PLS Brain (or Scalp) Scores with CI" feature.
+	2.	Command line program "batch_alter_fmri_onset.m" is
+		created to alter the onset values in type one batch
+		script for creating fMRI session/datamat files.
+
+Version 5.0903041  March 4, 2009
+	1.	When you display result file, missing datamat or
+		session file will now be prompted.
+
+Version 5.0902131  February 13, 2009
+	1.	Data exported from Voxel Intensity Plot window now
+		contains 'data_mean' variable, which stands for the
+		the mean values numbers that are displayed in the
+		Voxel Intensity Plot window.
+
+Version 5.0901211  January 21, 2009
+	1.	Fixed a bug in "Datamat Correlations Plot" window
+		to display result without bootstrap.
+
+Version 5.0901071  January 7, 2009
+	1.	Add "Multiple Corrs Extraction" in PET Behavior
+		result window to extract multiple correlation
+		values.
+
+Version 5.0811121  November 12, 2008
+	1.	Fixed the problem of "Datamat Correlations Plot"
+		crash on new version of MATLAB.
+	2.	Fixed "Datamat Correlations Response" data export
+		error for PET & Structural modules when 2 groups
+		of datamat have different masks.
+
+Version 5.0810231  October 23, 2008
+	1.	Fixed problem to list a single file in old MATLAB.
+
+Version 5.0809051  September 5, 2008
+	1.	Keyword "intel_system" can be added into PLS analysis
+		batch text file. By default, it is set to 1. If you
+		are sure that you are using 64-bit non-Intel system
+		with Matlab 7 and above, you can set it to 0 to allow
+		single precision math computation.
+
+Version 5.0808261  August 26, 2008
+	1.	Fixed a bug when condition(s) are removed from MRI
+		session file. Those modified session file will make
+		PLS analysis crash. In that case, you can apply a
+		patch to those session file before re-run analysis.
+		Here is an example of how to apply the patch: 
+			mri_session_patch('a_BfMRIsession.mat');
+		   or   mri_session_patch('b_fMRIsession.mat');
+	2.	Absolute value is used for elements inside function
+		of square root to prevent complex number.
+	3.	When clicking "Save Current Display" in File menu of
+		the result display window, the colormap is now saved
+		to a MATLAB file that is ended with "_cmap.mat".
+	4.	"reslice_nii.m" is provided to preprocess the NIfTI
+		format image file that containing non-orthogonal or
+		oblique affine transform.
+
+Version 5.0807231  July 23, 2008
+	1.	Changed "Reference Scan Onset" label under MRI "Edit
+		Condition" window to "Relative Ref. Scan Onset" to
+		prevent users from using absolute scan onset.
+	2.	Updated PLS User Guide with the changes.
+
+Version 5.0807161  July 16, 2008
+	1.	Added "Single reference scan" feature in creating
+		MRI datamat window.
+	2.	Added "Peak threshold" feature in Cluster report
+		options window.
+
+Version 5.0807091  July 9, 2008
+	1.	Modified both computation and display routine of the
+		"Brain (or Scalp) Scores Plot for Task PLS" feature,
+		and renamed it to "Task PLS Brain (or Scalp) Scores
+		with CI". The menu item only available for Mean-
+		Centering PLS and Non-Rotated Task PLS with more
+		than one bootstrap tests.
+	2.	Since the computation is changed, you will be prompted
+		to re-run PLS with this modified program.
+
+Version 5.0806111  June 11, 2008
+	1.	Fixed a bug in non-rotated PLS.
+
+Version 5.0806031  June 3, 2008
+	1.	Added Non-Rotated Behav PLS analysis feature for all the
+		modules of PLSgui and PLScmd.
+	2.	Added "Brain (or Scalp) Scores Plot for Task PLS" for all
+		the modules of PLSgui. If there are Bootstrap test loops,
+		the distribution of usc (Brain or Scalp Scores) are also
+		computed for both PLSgui and PLScmd.
+	3.	Like other modules in PLSgui, now ERP module also splits
+		its Threshold field in BootStrap Option wildow into two
+		field - Pos.Thresh and Neg.Thresh.
+	4.	Removed "Using Helmert Matrix" menu selection from the
+		contrast window.
+	5.	Created last good files folder that can be accessed from:
+		http://www.rotman-baycrest.on.ca/pls/source/lastgood
+		or /b/jimmy/plsgui/lastgood & /b/jimmy/plscmd/lastgood
+		on Rotman cluster servers.
+
+Version 5.0804282  April 28, 2008
+	1.	More changes in generating cluster report. First, undo
+		the change I did on April 25, 2008. Actually, there is
+		no skipped clusters. According to the comments of the
+		original author of this cluster report program, when a
+		cluster found later can be joined to the cluster found
+		earlier, they should be combined together. According to
+		the comments, the reason that the program can not find
+		all active voxels in the earlier cluster at once is due
+		to the recursion limit of MATLAB. Second, there is a
+		bug in the original cluster report program, which lost
+		some found active voxels in the clusters (because of
+		the combination). Now this problem has been fixed. I
+		still have to let you know that due to the recursion
+		limit, you may not be able to find all active voxels
+		in a cluster, or one cluster is divided to several
+		clusters, etc. I have updated PLS User's Guide and
+		FAQ, which will provide you more details.
+
+Version 5.0804251  April 25, 2008
+	1.	Fixed a bug in generating cluster report, which skipped
+		some clusters.
+
+Version 5.0803181  March 18, 2008
+	1.	Cluster with minimum cluster size in "Set Cluster
+		Report Options" window is included. i.e. If "Minimum
+		cluster size" is equal to 5, a cluster with 5 voxels
+		is now counted.
+
+Version 5.0802271  February 27, 2008
+	1.	Fixed a bug that causes crash when changing to other
+		view from Axial view in fMRI Bootstrap Ratio window.
+
+Version 5.0802221  February 22, 2008
+	1.	Implemented the workaround for "persistent" variable
+		that is provided by Matlab Tech Support, which can 
+		prevent from using global variable as a replacement
+		for MATLAB 7.2.
+
+Version 5.0802011  February 1, 2008
+	1.	Instead of throwing an error for a very oblique image,
+		now only a warning message will be displayed.
+
+Version 5.0801211  January 21, 2008
+	1.	When the "Filter" of simplified UIGETFILE/UIPUTFILE
+		is not using wildcard (* or ?), its "File Name"
+		field is now filled.
+
+Version 5.0801031  January 3, 2008
+	1.	Added "EGI128_v2" electrode system for ERP module.
+
+Version 5.0712061  December 6, 2007
+	1.	Last change for creating MRI datamat with onset
+		marked -1 still having problem with certain data.
+		It is now fixed.
+
+Version 5.0711221  November 22, 2007
+	1.	Modified simplified version of UIGETFILE/UIPUTFILE
+		so it will now take directory name from the input
+		filter pattern and the File Name field.
+
+Version 5.0711211  November 21, 2007
+	1.	Filter in simplified version of UIGETFILE/UIPUTFILE
+		is now working on new version of MATLAB.
+
+Version 5.0711203  November 20, 2007
+	1.	Fixed a problem to load datamat file for analysis
+		in the simplified version of UIGETFILE/UIPUTFILE
+		window.
+	2.	Made simplified version of UIGETFILE/UIPUTFILE work
+		on directory and filter.
+
+Version 5.0711161  November 16, 2007
+	1.	Modified Threshold field on the Result display
+		window of PET, Structure & MRI module. Now two
+		different thresholds (Pos / Neg Thresh) are set
+		up, and it is only for the situation where the
+		distribution of data is extremely biased.
+
+		Therefore, it is still suggested to use symmetric
+		threshold, and it is not recommended to modify the
+		threshold arbitrarily, unless you know what you are
+		doing.
+
+Version 5.0711132  November 13, 2007
+	1.	Fixed a bug when displaying Structural PLS data in a
+		different path.
+
+Version 5.0711121  November 12, 2007
+	1.	Fixed the bug when creating MRI datamat with certain
+		onset marked -1. For those existing (already created)
+		datamats, a patch needs to be applied before re-run
+		analysis. Here is an example of how to apply patch: 
+
+			mri_datamat_patch('a_BfMRIdatamat.mat');
+		   or   mri_datamat_patch('b_fMRIdatamat.mat');
+
+		To create a new MRI datamat, you don't need patch.
+
+Version 5.0711061  November 6, 2007
+	1.	Fixed a bug in task PLS analysis with single subject
+		data.
+
+Version 5.0711051  November 5, 2007
+	1.	MATLAB changed their UIGETFILE & UIPUTFILE, which
+		causes some of the old scripts no longer to be able
+		to run on some platform with new version of MATLAB 
+		(version 7 and above). Therefore, I have to built
+		a simplified vesion to workaround this issue.
+
+Version 5.0710161  October 16, 2007
+	1.	Fixed a bug when using Matlab Version 7.4.0 to
+		build Structural module session file.
+
+Version 5.0710091  October 9, 2007
+	1.	Bootstrap input dialog box in plscmd is replaced
+		by input text string as requested.
+
+Version 5.0709121  September 12, 2007
+	1.	Fixed a bug to create datamat for single slice
+		Structural MRI data.
+
+Version 5.0705021  May 8, 2007
+	1.	Command-line PLS help information is included in the
+		Appendix of PLS User's Guide.
+
+Version 5.0705021  May 2, 2007
+	1.	Modified "load_ant.m" based on the changed .avr file
+		information provided by ANT staff. So now PLS can
+		load ANT's average binary data format again. Please
+		see detail in:
+		http://www.rotman-baycrest.on.ca/pls/FAQ.txt
+
+Version 5.0704241  April 24, 2007
+	1.	A rounding issue in the code caused multiple voxel
+		extraction routine to fail in some situations. This
+		problem is fixed now.
+
+Version 5.0704231  April 23, 2007
+	1.	Stop supporting ANT average binary data format.
+	2.	Start supporting users' own scalp electrode system.
+	3.	Updated http://www.rotman-baycrest.on.ca/pls/FAQ.txt
+		and http://www.rotman-baycrest.on.ca/pls/UserGuide.htm
+
+Version 5.0704201  April 20, 2007
+	1.	Fixed the display of CTF150 location for ERP module.
+	2.	Jordan Poppenk found that the voxel value can be
+		negative, if a brain mask is used. So the previous
+		restriction is remvoed from FAQ file.
+	3.	"load_nii" will automatically load SPM affine matrix
+		M in .mat file, if it detects that the file name is
+		the same as the Analyze file.
+
+Version 5.0704091  April 9, 2007
+	1.	Modified normalize.m and add load_acq.m.
+
+Version 5.0703272  March 27, 2007
+	1.	Fixed a bug for the wrong scaling dispay in the
+		Subject and Average Amplitude window in the ERP
+		module, which was introduced from on March 9
+		from version 5.0703091.
+
+Version 5.0703221  March 22, 2007
+	1.	Fixed a bug in saving data to a text file.
+
+Version 5.0703191  March 19, 2007
+	1.	Fixed a bug in exporting cluster report all location.
+
+Version 5.0703151  March 15, 2007
+	1.	Fixed a bug in bootstrap test for Multiblock PLS.
+
+Version 5.0703091  March 9, 2007
+	1.	The display of "Design LV and Design Scores" window
+		in other module follows the way that is already in
+		place for E.R.fMRI. i.e. all the groups will display
+		together in the same window.
+	2.	The subject name in all MRI module is now using the
+		datamat prefix name defined in its session file.
+	3.	"Scale by Singular Value" button is added in all
+		result display window. It is the same button called
+		"Rescale" previously only for PET and Structural.
+	4.	The "Voxel Intensity Response" window will get the
+		same axis for all the groups. However, if you first
+		click a new group that exceeds the min/max of currnet
+		value, the axis will still adjust to the new min/max.
+		If you click back, the axis will stay unchanged.
+	5.	Added a "Create Batch File" button in the "Run PLS
+		Analysis" window. So people can using this created
+		plain text file (batch file) to feed "batch_plsgui"
+		program. We may also do some test with an external
+		program that is compiled in C language, and it will
+		also use the same batch text file to read MATLAB
+		files (Session / Datamat file) and write a MATLAB
+		file (Result file). but it is not available yet.
+	6.	Updated PLS User's Guide.
+
+Version 5.0703011  March 1, 2007
+	1.	Prompt user to delete some subjects in Structural
+		session information window when there is too much
+		data to process.
+
+Version 5.0702261  February 26, 2007
+	1.	Mofified User's Guide.
+	2.	Fixed false warning when there is no match subject files.
+
+Version 5.0702221  February 22, 2007
+	1.	Used different way to check low variability of behavior
+		data for bootstrap test.
+
+Version 5.0702212  February 21, 2007
+	1.	"num_LowVariability_behav_boots" field is added to the
+		"boot_result" struct for the bootstrap test containing
+		behavior data. In the case that behavior data does not 
+		have enough variance the following warning message will
+		also be displayed in the command window: "For at least
+		one behavior measure, the minimum unique values of
+		resampled behavdata doesnot exceed 50% of its total".
+	2.	Fixed display problem for the plot with special character
+		in subject name or condition name. The program now can
+		accept special character (e.g. underscore "_").
+	3.	Removed "Merge Conditions" button for Structural PLS.
+
+Version 5.0702161  February 16, 2007
+	1.	Fixed a bug in bootstrap test in handling bad behavior
+		data.
+	2.	MATLAB 7 has a little difference in handling "uiputfile"
+		in that it will include the wildcard string PLS program
+		provided. This problem has been solved.
+	3.	Made a workaround for single condition Mean-Centering PLS.
+	4.	Structural MRI module is implemented.
+
+Version 5.0702061  February 6, 2007
+	1.	Fixed a bug in permutation test of Non-Rotated PLS for
+		MRI modules.
+	2.	Fixed a dialog box error message asking about default
+		button.
+	3.	In datamat correlation window for behavior PLS result,
+		the "Save ... to IMG file" will now apply the bootstrap
+		mask that filters out the unreliable voxels.
+
+Version 5.0701151  January 15, 2007
+	1.	Fixed a bug in detecting group contrast rank deficiency.
+
+Version 5.0701101  January 10, 2007
+	1.	When exporting all locations of cluster report, values
+		(BrainLV or BSRatio) for the corresponding voxels are
+		also exported into "*_MODULEcluster_num.txt". The first
+		column of this file is still Cluster ID#; the second
+		column of this file is now the corresponding BrainLV
+		or BSRatio value; the last 3 columns are still XYZ
+		locations.
+
+Version 5.0701032  January 3, 2007
+	1.	Integrated single precision math operation feature of
+		MATLAB 7 (R14) above into the PET & MRI modules of the
+		program. If MATLAB is running on 64-bit system, a dialog
+		box will be popped out to ask user for the system's 
+		processor. If the answer is "Don't know" or "Intel 
+		processor", double precision will be used according to 
+		MATLAB Bug Report ID 268001. (If you are using RRI Linux
+		cluster, "telesto" is the only 64-bit system that has
+		non-Intel processor, which supports single precision math
+		operation).
+	2.	Removed unnecessary rounding (ceil) for the bootstrap
+		test of behavior PLS analysis, which caused inaccuracy
+		when number of bootstrap is small. "zero_brain_se" is
+		also added in "boot_result", which represents the index
+		of those brain_se with zero standard error.
+
+Version 5.0612081  December 8, 2006
+	1.	Neuroscan version 4.3 also has 32-bit acquisition
+		for its continuous data files. By default, it collects
+		16-bit integer data with the original SynAmp (SynAmp1).
+		With SynAmp2, it will collect 32-bit integer data. 
+		According to Neuroscan tech support, "this file format 
+		must be determined prior to reading the file, i.e. there
+		is no flag within the file itself to identify a file as 
+		32-bit". In order to read 32-bit data format, optional 
+		input "fileformat" of "load_neuroscan.m" function must
+		be specified to 'cnt32'. For example, you can load data
+		using: ns = load_neuroscan('myfile.cnt', 'cnt32'); Type
+		"help load_neuroscan" for the usage of "fileformat".
+		Because now the continuous data file can be very large,
+		you can specify cnt_start_time and cnt_end_time. Their
+		units are "second". For example, if you only want to
+		extract data from 0 second to 1.998 second, you can type:
+		ns = load_neuroscan('myfile.cnt', 'cnt', '', 0, 1.998);
+		The actual rounded start_time and end_time will be 
+		displayed in ns.start_time and ns.end_time.
+
+Version 5.0612051  December 5, 2006
+	1.	Added "behavior_name" field for the "analysis batch
+		file" processing program. Demo "analysis batch file"
+		are: batch_pet_analysis.txt, batch_erp_analysis.txt,
+		batch_bfm_analysis.txt, and batch_fmri_analysis.txt.
+
+Version 5.0611021  November 2, 2006
+	1.	Fixed a bug when brain mask only contains 1 slice.
+
+Version 5.0609251  September 25, 2006
+	1.	Both EGI 128-Channel and EGI 256-Channel are provided
+		along with BESA and CTF-150.
+	2.	Script "erp_single_folder" is included in PLS for
+		a special reason, and we do not recommand normal user
+		to use this script.
+	3.	Added "mat_into_hdr.m" script to convert SPM ANALYZE
+		Reoriented image file into NIfTI format and integrate
+		its matlab file into its header file.
+
+Version 5.0609151  September 15, 2006
+	1.	We decided to use XYZmm, voxel location with unit 
+		in millimeter, for the entries of Multiple Voxel 
+		Extraction" voxel location text file. In earlier
+		version, we were using XYZ, absolute voxel location,
+		for the entries of voxel location file. In order
+		to convert your absolute voxel location file to 
+		voxel location with unit in millimeter, we provided
+		a handy script called "xyz2xyzmm.m".
+	2.	Both "Peak Locations" and "All Locations" that are
+		exported from "File" menu in "Cluster Report" window
+		are also changed to voxel location with unit in 
+		millimeter. This way, people perform "Seed PLS" do not
+		have to to any extra conversion.
+	3.	"Posthoc Data" button in "PLS Analysis" window is
+		now removed.
+	4.	Since new BESA file can have more than 1 header lines,
+		ERP code is modified to accommodate this change. That
+		means, ERP module can load BESA file with no header,
+		or with any amount of headerlines, as well as binary
+		files like NeuroScan, ANT, or EGI.
+
+Version 4.0609071  September 7, 2006
+	1.	A bug was introduced during last change (Version
+		4.0608291), in which the neighborhood voxels were
+		not exported without averaging together. Since last
+		change only applied on MRI "Multiple Voxel Extraction",
+		only MRI module was affected. It is now fixed.
+	2.	In Matlab 2006a, the bootstrap test sometimes giving
+		you a feeling of "frozen". This is caused by the 
+		bootstrap progress bar sometimes conflict with the 
+		permutation progress bar. I have also fixed this.
+
+Version 4.0608291  August 29, 2006
+	1.	Modified "Multiple Voxel Extraction" part of the
+		program for MRI module, so it will consume less 
+		memory. The result remains the same as the earlier
+		version.
+
+Version 4.0608111  August 11, 2006
+	1.	The message of "Duplicate bootstrap order" was not
+		popped out, and it is now fixed.
+
+Version 4.0608091  August 9, 2006
+	1.	When exporting all locations of cluster report, a new
+		file that is named "*_MODULEcluster_num.txt" will be
+		created at the same time as "*_MODULEcluster_all.txt"
+		file. In this new file, a column with cluster # is added
+		in front of XYZ locations to indicate which cluster each
+		exported voxel belongs to.
+
+Version 4.0608021  August 2, 2006
+	1.	Provided a workaround for "persistent" variable issue
+		in Matlab R2006a (a Matlab bug).
+
+Version 4.0607111  July 11, 2006
+	1.	Fixed a bug when moving existing session file while the
+		sub-folders also needs to be changed.
+
+Version 4.0606231  June 23, 2006
+	1.	"expand_nii_scan.m" is modified so the expanded image
+		volume scan files will be appended with a 4-digit 
+		number starting from 0000.
+
+Version 4.0606201  June 20, 2006
+	1.	The original display routine assumed the result data
+		have both positive and negative values, and it crashed
+		otherwise. Now the problem is fixed, and it can display
+		all positive (or all negative) data.
+
+Version 4.0606091  June 9, 2006
+	1.	Cluster sizes were over counted during combination. It
+		is fixed now.
+
+Version 4.0606061  June 6, 2006
+	1.	Program "m2hdr.m" is created to integrate affine matrix
+		generated from old SPM into NIfTI *.hdr file.  
+	2.	There was a bug in converting some permuted images to
+		RAS orientation. It has been fixed now.
+
+Version 4.0606011  June 1, 2006
+	1.	There is a bug (crash) in fMRI non-rotate, if just
+		doing bootstrap test. It is fixed.
+
+Version 4.0605261  May 26, 2006
+	1.	Modified cluster report "Export All Location" menu,
+		and now the voxel is in the order of clusters. If you
+		have two clusters, one with 30 voxels, and the other 
+		one with 20 voxels, the first 30 lines correspond to
+		cluster one and the second one correspond to cluster
+		two. If you have saved "*cluster.mat" from previous
+		version, you have to re-generate it before exporting
+		all locations.
+
+Version 4.0605111  May 11, 2006
+	1.	When clicking "Save Current Display to IMG file", or 
+		"Save BLV/BSR result to IMG file" under "File" menu,
+		those img/hdr files can be saved in a directory that
+		is different from result file directory.
+
+Version 4.0604261  April 26, 2006
+	1.	When editing existing fMRI session file, existing
+		conditions were protected to prevent being modified.
+		Now, the protection is removed.
+
+Version 4.0604201  April 20, 2006
+	1.	Size of some image data is incorrectly larger than 
+		what specified in "hdr.dime.dim" field. So it caused 
+		problem to load image data. Image data is now always
+		loaded according to the size that is specified in 
+		its header.
+	2.	When editing existing fMRI session file, the "DELETE"
+		buttons in "Edit Condition" window is now enabled.
+
+Version 4.0603211  March 21, 2006
+	1.	Tools for NIFTI image now supports both COMPLEX64 and
+		COMPLEX128 data type.
+
+Version 4.0603192  March 19, 2006
+	1.	"UserGuide.htm" file is included in the package to
+		replace the old out-of-dated "*_hlp.txt" files. The
+		entire PLS User's Guide is still under processing.
+
+Version 4.0603062  March 6, 2006
+	1.	Modified "Export Data" for fMRI "Response Function Plot"
+		and "Temporal Brain Scores Plot". The "st_evt_list" in
+		the exported file is always sorted as condition-within-
+		subjects, so as the "data" variable.
+	2.	Added "data_mean" variable to the above exported MATLAB
+		data file. Rows of "data_mean" stand for conditions, and
+		subjects for each condition are averaged together.
+
+Version 4.0602241  February 24, 2006
+	1.	When loading some NIFTI data, there is an ordering 
+		problem in "hdr.dime.pixdim" and "hdr.hist.originator"
+		fields. It is now fixed.
+
+Version 4.0602231  February 23, 2006
+	1.	Modified NIFTI package to tell if the loaded NIFTI data
+		is converted to RAS system. (see detail in FAQ.txt)
+
+Version 4.0602072  February 7, 2006
+	1.	Removed unused "Group Analysis" check box from E.R.fMRI
+		and Blocked fMRI analysis window.
+	2.	Made fields in PET and ERP session window look even,
+		because behavior data fields were removed from session
+		window on version 4.0512201.
+	3.	Moved "Load Behavior Data" to a button in PLS option
+		frame, which looks better.
+
+Version 4.0601271  January 27, 2006
+	1.	"Load Onsets from a text file for this run" and "Save
+		Onsets to a text file for this run" submenu is added
+		under "Edit" menu in both E.R fMRI & Blocked fMRI "Run
+		Information" window.
+	2.	When "DONE" button in above window is clicked, "Data
+		Directory", and "Data Files" for all the runs will be
+		checked, to make sure they are all filled.
+	3.	Check session information further before creating MRI
+		datamat.
+	4.	When adding more subjects for PET and ERP module, the
+		program will not always start from the working directory.
+		Instead, it will remember parent directory of the first 
+		subject, and start to look for more subject directories
+		from there.
+
+Version 4.0601251  January 25, 2006
+	1.	Change "Save Background Image" label in result window
+		to "Save brain region to IMG file".
+	2.	When display activation map, changed inaccurate display
+		of lower / upper_interval from ".../(num_color-2)" to 
+		".../(num_color-1)", which is more accurate. However, 
+		user will not notice the change, and won't be affected.
+	3.	Fixed a bug in checking bad behavior data.
+
+Version 4.0601061  January 6, 2006
+	1.	Fixed a bug when read some ERP text data.
+
+Version 4.0601041  January 4, 2006
+	1.	Correlation Matrix is checked before decomposed. This
+		is only for people using PLS to analyse Structural 
+		data, where number of data points (ROI) can sometimes
+		be very small.
+	2.	Modified Seed PLS procedure "SeedPLS.txt".
+
+Version 4.0512201  December 20, 2005
+	1.	Removed behavior input field from "Session Window", 
+		because it is more convenient to input behavior data
+		at "modify behavior data" menu under "Deselect" menu
+		in "Run Analysis Window".
+	2.	In E.R.fMRI and Blocked fMRI, "Merge Data" option is
+		now moved to the session window.
+	3.	If "Within Each Run" is chosen for merging data, same
+		condition name in different runs will be treated as
+		different conditions. e.g. Run1Cond1, Run2Cond1, etc.
+	4.	All existing session file, datamat file, and result 
+		file can still be used. However, in order to obtain
+		accurate result, any datamat that was created under
+		"Within Each Run" choice should be re-created. In 
+		addition, all datamats that are used in an analysis
+		should have same number of runs, as well as same
+		number (and name) of conditions.
+	5.	For "Multiple Voxel Extraction" input, the program
+		is now also checking XYZ with head dimension, as
+		well as checking XYZ with brain area.
+
+Version 4.0511252  November 25, 2005
+	1.	Removed "Change Current Working Directory" menu in 
+		the start window, since the current directory is now
+		changed according to the session file, datamat file,
+		or result file you selected.
+
+Version 4.0511211  November 21, 2005
+	1.	Random number generator is now seeded before call.
+	2.	Fixed a bug to create MRI single subject datamat with
+		any scans skipped.
+	3.	Added menu bar to the NIFTI/Analyze embeddable viewer
+		"view_nii". So this independent package can also have
+		features like "orient", "image information" etc.
+
+Version 4.0511161  November 16, 2005
+	1.	"PLSgui in batch", an alternative way to run PLS,
+		is now available. As is explained by its name, 
+		"PLSgui" is a Matlab program with a graphic user 
+		interface (GUI) driven by messages from mouse and 
+		keyboard. "PLSgui in batch" load messages from a 
+		batch file, and automatically send them to the
+		program in batch. Now, you can fire batchs at the
+		end of a day, and the computer will create all 
+		datamats one by one and run all analysis for you.
+		When you come back next day, the PLS result file(s)
+		is ready for you to display.   ( Notes: You MUST
+		read all the contents in the "batch_plsgui_hlp.txt"
+		file carefully before using this batch feature.
+		Otherwise, you will more likely get either error
+		messages or wrong data. )
+
+Version 4.0511071  November 7, 2005
+	1.	Images whose cardinal planes are slightly off 
+		Cartesian coordinates will also be loaded. However, 
+		this approximation is based on the following 
+		assumption: In affine matrix, any value (absolute) 
+		below a tenth of the third largest value (absolute) 
+		can be ignored and replaced with 0. In this case, 
+		fields 'old_affine' & 'new_affine' will be added 
+		into hdr.hist. If you can not accept the above 
+		assumption, simply discard any nii structure with
+		fields 'old_affine' & 'new_affine'.
+
+Version 4.0510211  October 21, 2005
+	1.	ANT's average data (binary) and EGI's simple-binary
+		data can now be directly loaded for ERP module.
+
+Version 4.0510072  October 7, 2005
+	1.	Like ASCII files without header or with 1 line text 
+		header, NeuroScan average data (binary) can now be 
+		directly used as subject files to create datamat for
+		ERP module.
+
+Version 4.0509271  September 27, 2005
+	1.	Added neighbors' XYZ location to the _rf_plot file.
+
+Version 4.0509261  September 26, 2005
+	1.	Output standard deviation and "Number of neighbors" to
+		the _rf_plot file.
+	2.	Display "Number of neighbors" in the RF window.
+
+Version 4.0509221  September 22, 2005
+	1.	Added a new feature in "Voxel Intensity Response Plot"
+		(for PET, Blocked fMRI), and "Response Function Plot"
+		(for E.R.fMRI). Now, people can use average intensity
+		of its neighborhood voxels for intensity of the clicked 
+		voxel. Neighborhood size is 0 by default (no neighborhood
+		voxel is included). If it is not 0, it represents the 
+		number of voxels from the clicked voxel. if neighborhood
+		voxel is included, the average intensity will include
+		those voxels: A) The clicked voxel; B) The "stabled" 
+		voxels that meet the bootstrap threshold criteria, if 
+		bootstrap result is available; C) The cluster mask of 
+		the current view. (Cluster mask of BrainLV View is 
+		different from that of Bootstrap View).
+	2.	Above feature also applied to "Multiple Voxel Extraction"
+		for "Seed PLS". "Voxel Neighborhood Size" dialog box will
+		be prompted, and it is also 0 by default.
+	3.	Added warning message for users who would like to change
+		the default normalization checkbox status.
+
+Version 4.0509151  September 15, 2005
+	1.	PLS is now support NIFTI data format. This includes
+		file extension support for both single file (.nii) and
+		dual file (.img/.hdr); temporal dimension support (4th
+		dimension in the data); and data value scaling support
+		(Y = scl_slope * X + scl_inter). It also support some
+		of the sform or qform affine transform. This includes
+		any scaling (to get voxel_size), any translation (to get
+		originator), any flipping, and a few Rotation (only N*90
+		degrees, where N must be integer).
+
+Version 3.0509131  September 13, 2005
+	1.	Fixed bugs for the bootstrap of Multiblock PLS.
+
+Version 3.0509121  September 12, 2005
+	1.	Add messages to behavior data dismatch dialog box in
+		"modify behavior data menu" in "Run PLS" window.
+
+Version 3.0509091  September 9, 2005
+	1.	Fixed bootstrap computation for multi-groups.
+
+Version 3.0509081  September 8, 2005
+	1.	Fixed display problem for single LV result.
+	2.	Fixed correlation computation for multiblock PLS.
+
+Version 3.0508051  August 5, 2005
+	1.	Modified "create datamat" routine and single precision
+		is used in most steps except calculation.
+
+Version 3.0508021  August 2, 2005
+	1.	Modified timestamp check for "run MRI analysis"
+		window. Now, user can click "Ignore all" to 
+		disregard the fact that "one or more datamat files
+		are older than their session files", or click
+		"Stop" to re-generate datamat.
+	2.	Modified timestamp check for "plot result" window
+		for all modules. Now, user can click "Proceed all"
+		to disregard the fact that "one or more datamat files
+		are newer than their timestamp stored in the result 
+		file", and update all timestamp information in result
+		file. User can still click "Stop" to re-generate
+		result file.
+	3.	Fixed a bug in creating ERP datamat, which was
+		introduced in on July 28, 2005.
+
+Version 3.0507281  July 28, 2005
+	1.	For Multiblock PLS analysis, the conditions for 
+		behavior block can now be deselected. It is under
+		the "Deselect" menu of the PLS Analysis window,
+		and in a dialog box of command-line PLS.
+	2.	Fixed the display of Datamat Correlations Plot
+		for Event Related fMRI.
+
+Version 3.0507111  July 11, 2005
+	1.	Added "Single Subject" option when creating MRI 
+		datamat. When this option is selected, each onset
+		will be treated as an entry of the datamat. So, the
+		numbers of onset must be the same across conditions.
+
+Version 3.0507053  July 5, 2005
+	1.	Modified call to Matlab command "uigetfile/uiputfile"
+		to make the code competible with Matlab version 7 as
+		well as Matlab version 5 & 6. This is because Matlab
+		version 7 will automatically append filter suffix to
+		the file name even we only need a prefix.
+	2.	Removed locations for "uigetfile/uiputfile" dialog
+		box. This is because Matlab version 7 changed the
+		style dramatically, and it is not competible with 
+		earlier version any more. This only affect program
+		running on Unix or Linux computers, and the dialog
+		box on Unix or Linux computer is always located at
+		top left cornor now.
+	3.	Fixed a bug for MRI task analysis when people using 
+		session file with behavior data.
+	4.	If "Save Datamats" is checked when run MRI analysis,
+		the st_datamat variable is now saved in group cell.
+
+Version 3.0507042  July 4, 2005
+	1.	Changed file name for multiple voxel extraction.
+		Since the stacked voxel data file now use the same
+		prefix as you entered, it won't get overwritten.
+	2.	Updated "SeedPLS.txt" file.
+
+Version 3.0506301  June 30, 2005
+	1.	Added Multiblock PLS analysis feature for all the
+		modules of PLSgui and PLScmd.
+	2.	Reverse Version 3.0504055, so for Blocked fMRI, 
+		"Normalize data with ref. scans" is now set back
+		to be selected by default. This is because if we
+		unselect this option, the brain scores can not 
+		be distinguished between conditions.
+
+Version 3.0506161  June 16, 2005
+	1.	Removed old submenu "Export data for behav analysis"
+		in the brain score and response window. To perform
+		SeedPLS, please always extract data from "Multiple
+		voxel extraction" submenu, and follow "SeedPLS.txt"
+		document.
+
+Version 3.0506141  June 14, 2005
+	1.	Modified progress bar, so it potentially could be
+		canceled in the middle. (not applied here).
+	2.	Modified load_avw, so it speeded up.
+
+Version 3.0506131  June 13, 2005
+	1.	Added tooktip for P-Value and Threshold in result
+		window.
+
+Version 3.0505191  May 19, 2005
+	1.	Fixed a bug in creating cluster report for Sagittal
+		View Plot and Coronal View Plot.
+
+Version 3.0505161  May 16, 2005
+	1.	Fixed a bug in ERP condition merge.
+
+Version 3.0505041  May 4, 2005
+	1.	Fixed a bug in reading certain EEG/ERP file.
+
+Version 3.0504281  April 28, 2005
+	1.	Progress bar can now be minimized.
+
+Version 3.0504241  April 24, 2005
+	1.	Reversed the previous change back, and disabled the 
+		display of Talairach unit. This is because that 
+		whether or not to display Talairach unit really 
+		depends on how the brain image itself was registered.
+		If the brain image was registered in Talairach space,
+		the voxel is called Talairach voxel. If the image
+		was registered in MNI space, the voxel is called
+		volume voxel. Only in the situation when the image
+		is registered in one space, and wants to be displayed 
+		under a different space, the conversion is required.
+		Both tal2mni and mni2tal functions are still included
+		in PLS package, so people can use them whenever
+		there is such needs.
+	2.	Modified "Edit Condition" window. Now, if there is a
+		valid condition name entered in the condition name
+		field, it will be accepted when you click the "Done"
+		button, even if the "Add" button was forgot to click.
+		In addition, the heading blanks and the tailing
+		blanks will be removed from the condition name when
+		adding conditions.
+	3.	Change label name from "Stim. #1" to "Subj. #1" in
+		the response function window for fMRI and ERP.
+	4.	By default, "Normalize data with volume mean" will
+		not be selected for MRI create datamat window.
+
+Version 3.0504221  April 22, 2005
+	1.	When display PET and MRI results, Talairach unit
+		can now be displayed and selected besides MNI unit.
+
+Version 3.0504211  April 21, 2005
+	1.	Updated FAQ and help file for the multiple-run MRI
+		study that do not have all the conditions for every
+		runs.
+
+Version 3.0504153  April 15, 2005
+	1.	Axis will not be shown when the click of response
+		function is anywhere outside the brain.
+	2.	Changed EEG read file name.
+	3.	Updated 3V files.
+
+Version 3.0504141  April 14, 2005
+	1.	Fixed a display bug for response function when the
+		first click is anywhere outside the brain.
+
+Version 3.0504132  April 13, 2005
+	1.	Fixed a bug for MRI response function when datamats
+		have different coords.
+
+Version 3.0504121  April 12, 2005
+	1.	Fixed a bug for 3D background image.
+
+Version 3.0504081  April 8, 2005
+	1.	Reduced a loop in ERP display routine to improve the
+		display speed.
+
+Version 3.0504055  April 5, 2005
+	1.	Change label name from "Normalize data with baseline"
+		to "Normalize data with ref. scans" for fMRI datamat
+		creating window.
+	2.	For Blocked fMRI, "Normalize data with ref. scans" is
+		now set to "unselect" by default.
+
+Version 3.0504041  April 4, 2005
+	1.	Changed AVW file name and updated 3V files.
+
+Version 3.0503301  March 30, 2005
+	1.	Changed label name from "Canonical" to "Temporal".
+
+Version 3.0503291  March 29, 2005
+	1.	Modified file menu function, so any window can call it
+		easily by providing the window's handle. New features
+		like copy to clipboard, print preview etc are also
+		included.
+
+Version 3.0503171  March 17, 2005
+	1.	In order to load results generated using Matlab 7 on 
+		earlier versions of Matlab, a special Matlab 7 switch 
+		must be included during the saving process. Since such
+		a switch is not coded in the package, a small program 
+		called 'matlab7to5' is included to covert the .mat files
+		generated from Matlab 7 to be loaded on earlier versions
+		of Matlab that are above Matlab 5.
+
+Version 3.0503161  March 16, 2005
+	1.	For MRI 'Generate Datamat' window, if behavior data is
+		modified, user will be prompted to save data. User can
+		choose to save the behavior data or not.
+
+Version 3.0503141  March 14, 2005
+	1.	Fixed a bug in MRI result saving, when the result path
+		contains empty space.
+
+Version 3.0503092  March 9, 2005
+	1.	Fixed a bug to display the skewed result data.
+	2.	BrainLV threshold for all modules are now initially set
+		to: (abs(max_blv) + abs(min_blv)) / 6.
+	3.	Modified cardinal plane view, because most people seems
+		like the scroll bar in this new positions.
+
+Version 3.0502181  February 18, 2005
+	1.	Fixed a bug in the code that is caused by the precision
+		of Matlab, and modified other related files.
+	2.	Prestim_baseline in ERP session window will follow the
+		digitization interval (if available), and make itself
+		evenly dividable by digitization interval.
+
+Version 3.0502011  February 1, 2005
+	1.	The "percentage of minimum different subject number" 
+		dialog box is moved before permutation loop starts.
+
+Version 3.0501311  January 31, 2005
+	1.	Fixed a frozen bug in boot_order function.
+
+Version 3.0501181  January 18, 2005
+	1.	Original un-resampled order (sequential index of stacked
+		datamat) should never be included in perm_order, because
+		we only compare permutation result other than the original
+		pattern.
+	2.	For boot_order, because all analysis have already been 
+		included in the accumulation, except "mean-centering",
+		the Original un-resampled order (sequential index of 
+		stacked datamat) should not be included in the boot_order
+		except for "mean-centering".
+	3.	Add one more input parameter for "rri_boot_order", so now:
+			1) list of number of subjects in groups
+			2) number of conditions
+			3) number of samples
+			4) switch to control whether the boot_order
+			   includes an original un-resampled order
+
+Version 3.0501171  January 17, 2005
+	1.	Reversed the change made in Version 3.0412081 on December
+		8, 2004, because the "rri_boot_samples.m" only return the
+		boot samples with specific different subjects. I need to
+		modify "rri_boot_order.m" in order to include more other
+		different subjects. So, it is correct to have 81 bootstrap
+		samples for 5 subjects with 3 minimum different subjects
+		in version before December 8, 2004.
+	2.	Added a feature to let user choose the "percentage of
+		minimum different subject number". By default, bootstrap
+		must include at least 50% (i.e. half of the subjects).
+		The percentage can go from 30 to 70 percent.
+	3.	Input parameters for both "rri_boot_order" and "rri_perm_
+		order" are now the same: 1. list of number of subjects in
+		groups; 2. number of conditions; 3. number of samples.
+
+Version 3.0501111  January 11, 2005
+	1.	Command line PLS program is released. The result is the
+		same as the PLSgui, but it is more simplified because we
+		restrict the datamat in "subject-in-condition-in-group"
+		format. By taking away the fancy result rendering part 
+		and complicated subject stacking part (especially for 
+		fMRI and Blacked fMRI), the code is much easy to read
+		Unused codes are properly removed and the codes are
+		detailly commented. It can be used to validate PLSgui
+		result, or might be of interest to some other people 
+		who may want to port it to other platform.
+	2.	Added bootsamp/permsamp to boot_result/perm_result for
+		all the modules.
+
+Version 3.0501101  January 10, 2005
+	1.	The boot order in the following scenario was incorrect:
+		fMRI/BfMRI mean-center/no-rotate with any datamat created
+		under "with each run only" option. It has been fixed now.
+	2.	Fixed several bugs like posthoc file validating etc.
+
+Version 3.0501061  January 6, 2005
+	1.	In fMRI and Blocked fMRI session edit window, the
+		Run Information contents are checked when DONE
+		button or previous (next) button is clicked.
+
+Version 3.0412081  December 8, 2004
+	1.	Using Uril's "rri_boot_samples.m" to generate bootstrap
+		order. For 5 subjects with 3 minimum different subjects,
+		there will be 60 bootstrap samples, instead of 81.
+
+Version 3.0412061  December 6, 2004
+	1.	For "Multiple Voxel Extraction" under "Windows" menu
+		of PET, fMRI and Blocked fMRI module, it now reports
+		any entry in the voxel location file that is not
+		inside the brain region.
+
+Version 3.0411221  November 22, 2004
+	1.	When creating datamat for PET, fMRI or Blocked fMRI,
+		user is now allowed to consider all voxels as brain
+		region, by select "Consider all voxels as brain"
+		checkbox bedises the threshold editbox in "Create
+		Datamat" window.
+	2.	For fMRI and Blocked fMRI, Onsets field and/or Length
+		field are checked to make sure they are not empty or
+		not match when "Done" button is clicked in "Run Info"
+		window.
+
+Version 3.0411191  November 19, 2004
+	1.	Fixed a bug of saving displayed image into another
+		directory.
+
+Version 3.0411051  November 5, 2004
+	1.	Fixed a bug in Blocked fMRI BootStrapdisplay.
+
+Version 3.0411041  November 4, 2004
+	1.	Modified "Contrast" edit window and "Non-Rotated Task
+		PLS" routine for all modules. So, it can take different
+		contrast for different groups now. That means, if you
+		have 2 groups and 3 conditions, you need to put 6 rows
+		in the contrast data. First 3 rows belong to Group 1, 
+		and next 3 rows belong to Group 2.
+
+Version 3.0410292  October 29, 2004
+	1.	Added a new feature to allow user to use Analyze images
+		in any orientation for PET, E.R.fMRI and Blocked fMRI.
+		In "Create Datamat" window, a new button named "Check
+		image orientation" is added beside the "Create" button.
+		Once you click this button, the 3-View of one of the
+		subject images will be displayed in the "Change Image
+		Orientation" window, and you can re-orient it by click 
+		the "Re-orient" button. Once you click the "Re-orient" 
+		button, it will ask you to input the orientation of the 
+		CURRENT DISPLAYED image. If you did not get the correct 
+		orientation, you can do as many times as you want to 
+		make it standard Analyze orientation, i.e. from Left to 
+		Right in X orientation, from Back to Front in Y, and 
+		from Bottom to Top in Z. If you closed the "Change Image
+		Orientation" window, you can re-open it by click the
+		"Check image orientation" button in "Create Datamat"
+		window again.
+
+		For people that already generated the result file in
+		wrong orientation but did not correct it during creating
+		datamat, we provided axial view of "Convert Orientation"
+		(under "Image Rotation" menu in the result window) only
+		for PET and Blocked fMRI. However, we do not recommend
+		people to use this limited patch. Instead, we recommend
+		people to use the feature in "Create Datamat" window to
+		correct the orientation during creating datamat.
+
+Version 3.0410201  October 20, 2004
+	1.	Removed (uV) sign from the legend axis for ERP Electrode
+		Salience window.
+
+Version 3.0410151  October 15, 2004
+	1.	Modified the save of session file and datamat file. It
+		now prevents users from saving to a filename other than
+		_PETsession.mat, _BfMRIsession.mat, _BfMRIdatamat.mat,
+		_PETdatamat.mat, _fMRIsession.mat, _fMRIdatamat.mat,
+		_ERPsession.mat, _ERPdatamat.mat.
+	2.	Since we only read .mat from the current directory,
+		which can be changed through "Change Current Working
+		Directory" item under "Tools" menu in the first PLS 
+		window, there is no need for another "PLS Working 
+		Directory" in the session window. Now, this field has
+		been removed from all modules, and the path is 
+		automatically set to the current directory.
+
+Version 3.0410061  October 6, 2004
+	1.	Fixed data path bug.
+
+Version 3.0409301  September 30, 2004
+	1.	Added following features for session windows. However,
+		please keep in mind that you are NOT required to modify
+		paths session files after you moved data from one
+		location to the other, unless you would like to modify
+		the contents of the session file. This is because that
+		"Run Analysis" and "Show results" only read file from
+		the current directory.
+	2.	Added a feature in the Session windows to let users
+		change old data (image, EEG etc.) path to new data
+		path, as well as the change of new session path for 
+		*session.mat file. When users click "Change Data Paths"
+		under "Edit" menu, the "Change Path" window will pop
+		up, and users can change both session path and data
+		path. Please see the detail and the restrictions in
+		FAQ.txt file.
+	3.	The program will also do a preliminary scan for the
+		first run (or subject for PET & ERP) sub-folder. If 
+		the path is invalid, it will diplay a message at the 
+		bottom of the session window, and prompt users to go 
+		to "Edit" and "Change Data Paths" menu.
+	4.	"Change PLS Path" button in the first PLS window is
+		removed, because this program will only look current
+		directory for "*datamat.mat", and "*result.mat" when 
+		users run analysis and show Results.
+	5.	Default value of "Number of charactors for subject 
+		initial" in "Edit Subject" window for ERP and PET is 
+		set to -1. This way, the consistency of subject file
+		name convention will not be checked in the Subject
+		Detail window (when clicking Add or Edit). If this
+		number is not -1, please check Help and the FAQ.txt
+		for details regarding to the consistency. In addition,
+		this value is now saved to the session profile, so
+		it will be remembered when the session profile is
+		loaded next time.
+	6.	Fixed several bugs.
+
+Version 3.0409152  September 15, 2004
+	1.	Added "Save Datamat As" feature in ERP "Modify Datamat"
+		window. So datamat can be saved into a different name
+		with (or even without) any modification. The datamat
+		with new name will still point to the same data file.
+		We did this because the data file is usually much larger
+		than datamat file. This way, several different datamat
+		files can point to the same data file (reservoir).
+	2.	Added Bootstrap display for ERP correlation window. The
+		"BootStrap options" item is also added into its "Tool"
+		menu.
+	3.	Substituted "Plot Canonical Scores" with "Plot Canonical
+		Correlations" for ERP behavior PLS result.
+	4.	Disabled false warning message in result file that does
+		not store the timestamp information.
+	5.	Removed redundant file pet_bootprocrust.m.
+	6.	Fixed a bug in detail window of ERP correlation.
+	7.	Fixed a bug that used wrong data path.
+
+Version 3.0408201  August 20, 2004
+	1.	In ERP result window, "Spatiotemporal Correlations" is
+		added under "View" menu.
+	2.	In ERP result window, wave selection box like "All Cond",
+		"All Subj" etc is added in "Display Options" window of
+		"Subject Amplitude" view, "Average Amplitude" view, and 
+		"Spatiotemporal Correlations" view.
+	3.	"Deselect" option is added in ERP "Run PLS Analysis"
+		window.
+	4.	In "Edit Behavior Data" window, "remove selected behavior
+		name" option, and "Save current behavior data" option has
+		been added.
+	5.	Timestamp information is imbeded inside the result files.
+		The program will automatically check for the timestamp 
+		integrity for datamat file (and also session file if MRI),
+		and will prompt with a pop-up window if necessary.
+	6.	Fixed several bugs.
+
+Version 3.0407291  July 29, 2004
+	1.	Fixed an axes limit problem for behavPLS in correlation
+		overview window.
+
+Version 3.0407283  July 28, 2004
+	1.	Also check the valication of the contrast file after
+		click "Run" in the "Run PLS Analysis" window.
+
+Version 3.0407271  July 27, 2004
+	1.	For "Non-Rotated Task PLS", non-linear contrasts and
+		non-orthogonal contrasts will be accepted, but a 
+		warning message will be prompted.
+	2.	For "Non-Rotated Task PLS", display all LVs when plot
+		singular value or crossblock covarience.
+
+Version 3.0407261  July 26, 2004
+	1.	Added "Non-Rotated Task PLS" option to run non-rotated
+		version of Task PLS Analysis.
+	2.	"Using Helmert Matrix" PLS Option has been completely
+		removed from the "Run PLS Analysis" window. Instead, it
+		is added under the "File" menu of contrast window.
+	3.	When running Bootstrap Analysis, the bootstrap result is
+		now checked and replace meaningless data with 0. Thus,
+		reduced the display crash when rendering the bootstrap
+		result.
+	4.	Related Documents are modified to represent this new
+		release.
+
+Version 2.407141  July 14, 2004
+	1.	Modified program so it now only requires matlab toolbox.
+
+Version 2.407131  July 13, 2004
+	1.	In PLS start window, when the "Show PLS Result"
+		or the "Run PLS Analysis" button is clicked, the
+		program will assume that all the related matlab 
+		files (*.mat) are sitting in the current directory,
+		thus, avoid trouble when those matlab files are
+		copied between systems. In other words, people do not
+		need to use the "Change PLS Path" button any more
+		when copy those matlab files between systems. If the
+		related matlab files are not sitting in the current
+		directory, people can use the "Change Current Working
+		Directory" submenu under "Tools" menu in this start 
+		window to change the directory containing those matlab
+		files as current directory.
+	2.	"Save display setting" for result window dialog box 
+		will not be prompted out every time when people change
+		the display setting and close the result window. Instead,
+		program will now read status from "Save display setting"
+		submenu under "Tools" menu in the start window to decide
+		whether save the display setting for users. In addition,
+		when people open start window, program will not prompt
+		"Create PLS Profile" message, and by default, status in
+		"Save GUI position" submenu under "Tools" menu will be
+		set to "Off" at beginning.
+	3.	In ERP "Edit Channel Order" window, added number beside
+		"Channels:" label and "Selected Channels: " label, and
+		implemented multiple remove in "Selected Channels" panel.
+
+Version 2.406181  June 18, 2004
+	1.	Fixed a bug in Blocked fMRI RF Plot when prefix of
+		datamat is different from that of session file.
+	2.	Added a warning window after the datamat saved into
+		a different prefix, and the "datamat prefix" in
+		session file is updated.
+
+Version 2.406111  June 11, 2004
+	1.	When the "Cluster Mask" item under "Report" menu is
+		checked, both "Save display" and "save result" under
+		"File" menu will save the current masked image. When
+		"Cluster Mask" is unchecked, they will save the 
+		unmasked image.
+
+Version 2.405101  May 10, 2004
+	1.	Add a "Create Figure" sub-menu under 'Window' menu
+		in "3 Cardinal Plane View" window.
+
+Version 2.404132  April 13, 2004
+	1.	Used standard normal distribution to calculate p-value
+		in Cluster Report.
+	2.	If any column of behavior data contains the same data
+		for each group, program will stop proceed, and prompt
+		error message.
+
+Version 2.404081  April 8, 2004
+	1.	Added merge conditions option in creating datamat
+		window for both PET and ERP modules. (E.R.fMRI and
+		Blocked fMRI modules already have the option).
+	2.	Prompted file name after save or export a file in
+		Cluster Report window.
+
+Version 2.403301  March 30, 2004
+	1.	Fixed a cond. labelling bug in PET brain scores plot.
+
+Version 2.403181  March 18, 2004
+	1.	Added feature to export canonical scores for ERP
+		results.
+
+Version 2.403081  March 8, 2004
+	1.	Modified fMRI response function, and make average
+		plots have own Y scales.
+
+Version 2.403031  March 3, 2004
+	1.	Worked around to make program not crash in extreme
+		situation when max_blv(bsr) = thresh = 0 or 
+		min_blv(bsr) = thresh = 0.
+
+Version 2.403023  March 2, 2004
+	1.	Fixed a bug that was introduced in on Jan. 9, which
+		can cause PLS result display frozen on some PC.
+	2.	In '3 Cardinal Plane view', XYZ & Value are updated
+		with the 3 sliders now.
+
+Version 2.402271  February 27, 2004
+	1.	Added a feature to display all three cardinal planes
+		for the PLS result data. To view all three cardinal 
+		planes, click '3 Cardinal Plane View' submenu under
+		'Windows' menu.
+
+Version 2.402181  February 18, 2004
+	1.	Modified 'fmri_plot_hrf', so it can read session file
+		with empty onset data in one or more conditions for a
+		single run.
+
+Version 2.402131  February 13, 2004
+	1.	Modified 'fmri_plot_hrf', so it can read both old and
+		new fMRI session file.
+
+Version 2.402121  February 12, 2004
+	1.	Saving result to an IMG file now has two different ways.
+		When saving 'BLV (or BSR) result to IMG' file, it only
+		saved the BLV data (or BSR) data to an IMG file, and
+		does not include colormap or background image. When
+		saving 'Current Display to IMG file', it will include
+		colormap and background image.
+
+Version 2.402111  February 11, 2004
+	1.	Modify Edit Runs, so the MRI session file is consistant
+		no matter using text file to input onset data or enter
+		onset data manually.
+
+Version 2.402101  February 10, 2004
+	1.	Reversed 2 changes made in Version 2.402051 (1 & 2).
+		So we still export the whole time series, instead of
+		only export the active time lag.
+	2.	Cluster Report can be saved in tab-delimited .txt file,
+		as well as in matlab .mat file.
+	3.	Made XYZ(mm) field editable.
+
+Version 2.402051  February 5, 2004
+	1.	Changed the XYZ text box to edit box, so the current
+		location can be set from this text box, rather than
+		go to 'Set cluster report options' menu. For Event
+		Related fMRI, [Lag X Y Z] is used, and for others,
+		[X Y Z] is used.
+	2.	The data export in response function and Multiple
+		Voxel Extraction will now only export the data in the
+		corresponding lag number.
+	3.	SeedPLS document modified because of above change.
+
+Version 2.402021  February 2, 2004
+	1.	Updated MRI datamat creation help file.
+	2.	Program can now set current location based on value
+		in 'Current location (/ Current lag)' field(s) under
+		'Set cluster report options' submenu under 'Report'
+		menu. The result is the same as clicking the specific
+		location.
+
+Version 2.401281  January 28, 2004
+	1.	When saving cluster report, if the suffix is not
+		entered, program will now automatically add one.
+	2.	When loading cluster report, it looks for proper
+		suffix now.
+	3.	Changed the representation of cluster mask. Instead
+		of putting a marker on voxel, now it only displays 
+		the clustered voxels.
+	4.	All parameters in the create datamat window are now
+		stored in a structure named 'create_datamat_info'.
+
+Version 2.401191  January 19, 2004
+	1.	Added HRF Plots in MRI Run information window.
+	2.	Created help file for this plot.
+	3.	Added 'Save Figure' in File menu for several windows.
+
+Version 2.401131  January 13, 2004
+	1.	fMRI canonical brain scores can be exported out.
+
+Version 2.401091  January 9, 2004
+	1.	In result window, 'Cluster Mask' submenu has been
+		added under the Report menu.
+	2.	Added instruction into help files.
+
+Version 2.401051  January 5, 2004
+	1.	In Cluster Report window, 'Export All Locations' item
+		has been added under the File menu.
+
+Version 2.312231  December 23, 2003
+	1.	For fMRI Response Functions Plot and Canonical Scores
+		Plot, the Average plots is now scaled independently.
+	2.	In addition to the HRF correlations, as for task PLS,
+		HRF Response Function is now also plotted for Behav
+		PLS.
+	3.	Modified Seed PLS document 'SeedPLS.txt', and allow 
+		user to use 2 different way to input extracted behav
+		data.
+
+Version 2.312222  December 22, 2003
+	1.	Change Pointer to 'Watch' while waiting for data
+		exporting from 'Multiple Voxels Extraction'.
+	2.	Modified Seed PLS document 'SeedPLS.txt'.
+
+Version 2.312191  December 19, 2003
+	1.	Allow ERP Behavior PLS Scores Plot display more than
+		48 subjects.
+	2.	Added option to threshold the correlations based on 
+		bootstrap ratio.
+	3.	Added a submenu under Datamat menu in session window
+		to input Seed PLS Behavior data and modify Datamat.
+	4.	For Multiple Voxels Extraction submenu under Windows
+		menu, it now extracts the behavior data with the
+		same amount of rows as 'datamat' variable in datamat
+		file.
+
+Version 2.312162  December 16, 2003
+	1.	Added color selection for Crosshair.
+
+Version 2.312151  December 15, 2003
+	1.	Added a Point-to-Text button for ERP plotting subject
+		amplitude detail. The selected point will be appended 
+		into a text file entry after click this button. The 
+		file name of the text file will use the same prefix 
+		and ended with '_ERPdetail.txt'.
+
+Version 2.312081  December 8, 2003
+	1.	Modified MRI datamat generation function, so it will
+		not use large memory to hold an onset of data.
+
+Version 2.312041  December 4, 2003
+	1.	Fixed a cond. labelling bug in PET brain scores plot.
+
+Version 2.312011  December 1, 2003
+	1.	Added Crosshair for brain image plot.
+
+Version 2.311252  November 25, 2003
+	1.	Fixed a bug for voxel selection, so the voxel location
+		is correct now.
+
+Version 2.311211  November 21, 2003
+	1.	Re-Scale HRF & Canonical Plots to make them the same 
+		across all conditions & groups.
+	2.	Add stable display for HRF, if it is a bootstrap
+		analysis.
+
+Version 2.311201  November 20, 2003
+	1.	In MRI session window, Merge Condition can now take
+		conditions with different numbers of onsets
+
+Version 2.311191  November 19, 2003
+	1.	Added a new electrode system for ERP/EGI
+
+Version 2.311113  November 11, 2003
+	1.	Make Onset Timing Plot a Gaussian Curve, from Onset
+		to Onset plus 16 seconds.
+	2.	Add (TR) after 'Event Onset' and 'Block Onset'.
+
+Version 2.311111  November 11, 2003
+	1.	Added an Onset Timing Plot menu in MRI Edit Runs
+		window to display onset timing for all conditions.
+	2.	In ERP Create/Modify Datamat window, Analysis
+		Start/End Time now accept numbers that can not be
+		evenly divided by Digital Interval and then round
+		to the closest number that can be divided by
+		Digital Interval.
+	3.	Move Zoom menu of ERP Plot window to the right of
+		Edit menu.
+
+Version 2.310301  October 30, 2003
+	1.	Allow user to apply STD on their MRI data, and
+		hopefully this could remove some spikes noise
+		from the brain region. To do this, the MRI datamat
+		must be created first, and then choose 'Apply STD
+		to Datamat' from 'Datamat' menu in Session Profile
+		window.
+
+Version 2.310261  October 26, 2003
+	1.	Integrated the MRI convert_task into PLS. So instead
+		of prompting re-run MRI task analysis, it will prompt
+		and ask for the new result file name.
+	2.	removed the convert_task M file.
+
+Version 2.310242  October 24, 2003
+	1.	Instead of re-run MRI task analysis, you can now
+		type: convert_task(oldfile, newfile);  to convert
+		your old fMRI/BfMRI task analysis result file to
+		the readable new result file.
+
+Version 2.310241  October 24, 2003
+	1.	Session Profile list file can not be save and load
+		in MRI Select Session Profiles window.
+	2.	Corrected MRI Brain Scores Plot. However, all the
+		Task fMRI/BfMRI analysis must be re-run to include
+		the correct Brain Scores row index information.
+	3.	Fixed bug that not saving st_datamat.
+
+Version 2.310231  October 23, 2003
+	1.	Added new feature to display the subject ID by click
+		the marks for MRI brainscores x designscores plot.
+
+Version 2.310153  October 15, 2003
+	1.	Added export for Correlation RF.
+	2.	For Datamat Correlation Plot, now it can load / save
+		background image, and save Datamat Correlation image.
+
+Version 2.310142  October 14, 2003
+	1.	Fixed a bug in fMRI Canonical Brain Correlations plot.
+	2.	Asking PLS result filename before analysis begin.
+
+Version 2.310101  October 10, 2003
+	1.	Save fields value after display the result file.
+	2.	XYZ(mm) in the window will be updated after changing
+		Origin in 'Set Cluster Report Option'.
+
+Version 2.310081  October 8, 2003
+	1.	Plot Canonical Brain Correlations for Behavioral fMRI
+		PLS result.
+
+Version 2.310011  October 1, 2003
+	1.	Fixed bug in reading ERP header.
+
+Version 2.309301  September 30, 2003
+	1.	Fixed color of minimum value for BLV / BSR display.
+
+Version 2.309291  September 29, 2003
+	1.	Save background image while saving BLV or BSR to IMG.
+	2.	Save MaxValue/MinValue of IMG into glmax/glmin field
+		for image header with float type.
+
+Version 2.309231  September 23, 2003
+	1.	Changed ERP header reading function to let it be able to
+		read different headers.
+	2.	Modified Change Path function to fix bugs that occurred 
+		during reading PC data on Linux machine, and vice versa.
+	3.	Added new feature to view Sagittal and Coronal view, as
+		well as Axial view for PET and MRI.
+
+Version 2.309171  September 17, 2003
+	1.	Modified legend item in Sigular Values Plot Window, so
+		that only meaningful components are displayed as legend
+		item now. The meaningful components are defined such that
+		its Percent Crossblock Covarience is no less than 1%.
+
+Version 2.309161  September 16, 2003
+	1.	Added new feature for ERP to be able to read subject data
+		both with header or without header.
+
+Version 2.309081  September 8, 2003
+	1.	Added 'Subject Amplitude' in 'View' menu to view group
+		subject amplitude.
+	2.	Added 'Zoom' menu in 'Plot Detail' window, and displayed
+		XY value when click anywhere inside any plot.
+
+Version 2.309021  September 2, 2003
+	1.	Fixed a bug in creating new ERP session file.
+
+Version 2.308271  August 27, 2003
+	1.	Fixed a bug that cause crash when modify behavior data 
+		during analysis but there is no behavior data in the
+		datamat file.
+
+Version 2.308251  August 25, 2003
+	1.	Added Canonical scores plot for ERP data.
+
+Version 2.308181  August 18, 2003
+	1.	Added a new check box when creating E.R.fMRI or Blocked
+		fMRI datamat, so user can have option to uncheck
+		'Normalize data with baseline signal'.
+	2.	Added electrode system choosing option in Edit Channel
+		Order window in ERP session profile, so user can use ERP
+		module to analyze other electrode system, like MEG etc.
+
+Version 2.308122  August 12, 2003
+	1.	Fixed bug in plotting old result file.
+
+Version 2.308011  August 1, 2003
+	1.	Fixed a bug to write PET Brain LV to img.
+	2.	Add new feature to let user deselect some conditions and
+		modify (or load new) behavior data right before running
+		the analysis.
+	3.	Added new feature to PET to read mask from another image
+		file, and select whether or not to normalize the datamat.
+
+Version 2.307142  July 14, 2003
+	1.	Fixed a bug for group fMRI bootstrap test, which stops
+		in the middle.
+	2.	After datamat created, now the fMRI session profile window
+		still leave open.
+
+Version 2.307103  July 11, 2003
+	1.	Fixed a bug when save for fMRIdatamat, which sometimes
+		cause frozen.
+	2.	Added a warning message about not manually changing file
+		names.
+
+Version 2.307091  July 9, 2003
+	1.	Fixed a bug in fMRI/Block fMRI bootstrap, which sometimes
+		cause frozen.
+
+Version 2.307021  July 2, 2003
+	1.	Modified Edit Run for fMRI and Blocked fMRI module, so 
+		the command after @ entered in the Edit Onset field will
+		be case sensitive.
+
+Version 2.306301  June 30, 2003
+	1.	Modified Multiple Voxel Extraction for fMRI module. Now
+		it includes all the time series, instead of average.
+
+Version 2.306271  June 27, 2003
+	1.	Fixed Datamat Correlation Plot Current Value update
+		problem.
+
+Version 2.306261  June 26, 2003
+	1.	Separate Datamat Correlation Plot for different behavior
+		measures.
+	2.	Fixed color bar divided by 0 problem.
+	3.	Stop running observation test for bootstrap if bootstrap
+		can not run.
+
+Version 2.306252  June 25, 2003
+	1.	When subjects are no more than 8, we get bootstrap order
+		randomly from a pool that contains only the legitimate
+		bootstrap orders.
+	2.	Modified Plot Detail window for ERP plot, and it now has
+		a 10% margin for bootstrap ratio plot.
+
+Version 2.306231  June 23, 2003
+	1.	Fixed a bug in Plot Detail window for ERP plot, and now
+		the Plot Detail window represents the correct grand
+		average for ERP plot.
+
+Version 2.306201  June 20, 2003
+	1.	Modified fMRI 'Export Peak Location' for cluster report
+		window, and keep the duplicated voxel in the exported
+		text file.
+
+Version 2.306161  June 16, 2003
+	1.	Modified PET result display:
+		A. added color bar;
+		B. took away the default background image, and saved it
+		   into 'pet_template.img (.hdr)'. So, you need to click
+		   File menu and choose 'Load Background Image', if you
+		   still need to display this background image.
+
+Version 2.306121  June 12, 2003
+	1.	Fixed "Change PLS Path" for "Select more files".
+	2.	Added "Export Peak Location" choice for Cluster Report
+		window. This choice will export the peak location XYZ
+		to a text file.
+	3.	Added "Multiple Voxels Extraction" menu. This choice will
+		ask for a location text file, e.g. the one you exported
+		from Cluster Report window, and will generate text files
+		contain all the voxels listed in the location text file.
+
+Version 2.306111  June 11, 2003
+	1.	Modified Average ERP Amplitude Plot, and display average
+		conditions for each groups.
+	2.	Fixed crash problem when trying to remove an averaged
+		condition from "Display Condition Average" in Average ERP
+		Amplitude Plot
+	3.	Fixed "Change PLS Path" for *ERPdatamat.
+
+Version 2.306101  June 10, 2003
+
+	1.	Modified Display Option in ERP Amplitude Plot. So users
+		can now select "All subject in condition X" and "All
+		condition in subject X".
+
+Version 2.305282  May 28, 2003
+
+	1.	Modified Change PLS Path module. So users can search old
+		path by clicking 'Search' button.
+	2.	Added "Change Current Working Directory" under "Tools"
+		menu of the very first window.
+
+Version 2.305273  May 27, 2003
+
+	1.	Fixed voxel intensity display problem.
+	2.	Modified Change PLS Path module. So users can enter any
+		'Old Path' they ever used, and change that old path to
+		the corresponded 'New Path'.
+
+Version 2.305261  May 26, 2003
+
+	1.	Updated FAQ.txt file.
+	2.	Added 'Export data for behav analysis' for PET and fMRI.
+		So the exported text file can be directly read into the
+		program as behavior measure during Seed PLS.
+
+Version 2.305233  May 23, 2003
+
+	1.	Added "What's new" into "Help" menu. It updates log
+		history.
+	2.	Modified voxel intensity for PET and Blocked fMRI. So
+		they are now exporting extracted voxel data.
+	3.	Fixed a bug in ERP module, which caused "Plot Scalp 
+		Scores" display crash when deselect any behavior 
+		measure.
+	4.	Added "Save Background Image" for PET and fMRI.
+	5.	Added "Voxel Intensity Display" for Blocked fMRI.
+	6.	Added "Correlation Overview" for all module to display
+		all groups.
+	7.	Fixed a bug in fMRI module, which caused "Design Scores"
+		display crash when results were from group analysis.
+
+Version 2         May 21, 2003
+
+	*	First beta-release is officially announced. :)

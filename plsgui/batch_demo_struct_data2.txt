@@ -1,0 +1,87 @@
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+prefix		demo2		% prefix for session file and datamat file
+brain_region	/home/jimmy/p/struct/background.nii	% file name for brain region
+dataset_path	/home/jimmy/p/struct/data	% folder for subject files
+normalize	0		% normalize volume mean (keey 0 unless necessary)
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Name Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cond_name	c1	% condition 1 name
+cond_name	c2	% condition 2 name
+
+% ... following above pattern for more conditions
+
+	%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Name End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Filter Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cond_filter	*wm.nii		% filter to distinguish condition 1
+cond_filter	*gm.nii		% filter to distinguish condition 2
+
+% ... following above pattern for more conditions
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Filter End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Name Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%
+
+subj_name	s1	% subject 1 name
+subj_name	s2	% subject 2 name
+subj_name	s3	% subject 3 name
+subj_name	s4	% subject 3 name
+
+% ... following above pattern for more conditions
+
+	%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject Name End  %
+	%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject File Name (without path) Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+subj_file	small_nihpd_000093_lin_wm.nii	% subj 1 in cond 1
+subj_file	small_nihpd_000095_lin_wm.nii	% subj 2 in cond 1
+subj_file	small_nihpd_000098_lin_wm.nii	% subj 3 in cond 1
+subj_file	small_nihpd_000097_lin_wm.nii	% subj 4 in cond 1
+
+subj_file	small_nihpd_000093_lin_gm.nii	% subj 1 in cond 2
+subj_file	small_nihpd_000095_lin_gm.nii	% subj 2 in cond 2
+subj_file	small_nihpd_000098_lin_gm.nii	% subj 3 in cond 2
+subj_file	small_nihpd_000097_lin_gm.nii	% subj 4 in cond 2
+
+% ... following above pattern for more subjects (in conditions)
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Subject File Name (without path) End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+

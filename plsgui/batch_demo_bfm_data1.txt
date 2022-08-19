@@ -1,0 +1,70 @@
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+prefix		demo	% prefix for session file and datamat file
+brain_region	0.15	% threshold or file name for brain region
+across_run	0	% 1 for merge data across all run, 0 for within each run
+single_subj	0	% 1 for single subject analysis, 0 for normal analysis
+single_ref_scan	0	% 1 for single reference scan, 0 for normal reference scan
+single_ref_onset  0	% single reference scan onset
+single_ref_number  1	% single reference scan number
+normalize	0	% normalize volume mean (keey 0 unless necessary)
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  General Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cond_name	c1	% condition 1 name
+ref_scan_onset	0	% reference scan onset for condition 1
+num_ref_scan	1	% number of reference scan for condition 1
+
+cond_name	c2	% condition 2 name
+ref_scan_onset	0	% reference scan onset for condition 2
+num_ref_scan	1	% number of reference scan for condition 2
+
+% ... following above pattern for more conditions
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%  Condition Section End  %
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+
+	%%%%%%%%%%%%%%%%%%%%%%%
+	%  Run Section Start  %
+	%%%%%%%%%%%%%%%%%%%%%%%
+
+data_files      /home/jimmy/p/fmrisubj/dataset_001/sS1_*.img    % run 1 data pattern (must use wildcard)
+block_onsets	0 24 48	72 96 120 144			% for run 1 cond 1
+block_onsets	12 36 60 84 108 132 156			% for run 1 cond 2
+% ... following above pattern for more conditions of block_onsets in run 1
+block_length    5 5 5 5 5 5 5                           % for run 1 cond 1
+block_length    5 5 5 5 5 5 5                           % for run 1 cond 2
+% ... following above pattern for more conditions of block_length in run 1
+
+data_files      /home/jimmy/p/fmrisubj/dataset_002/data*.img    % run 2 data pattern (must use wildcard)
+block_onsets	0 24 48	72 96 120 144			% for run 2 cond 1
+block_onsets	12 36 60 84 108 132 156			% for run 2 cond 2
+% ... following above pattern for more conditions of block_onsets in run 2
+block_length    5 5 5 5 5 5 5                           % for run 2 cond 1
+block_length    5 5 5 5 5 5 5                           % for run 2 cond 2
+% ... following above pattern for more conditions of block_length in run 2
+
+% ... following above pattern for more runs
+
+	%%%%%%%%%%%%%%%%%%%%%
+	%  Run Section End  %
+	%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------
+

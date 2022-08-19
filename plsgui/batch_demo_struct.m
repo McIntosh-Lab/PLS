@@ -1,0 +1,1 @@
+batch_plsgui batch_struct_data1.txt batch_struct_data2.txt batch_struct_analysis.txt

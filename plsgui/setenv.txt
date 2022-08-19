@@ -1,0 +1,7 @@
+
+setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:/software/Matlab74/MATLAB_Component_Runtime/v76/runtime/glnxa64:/software/Matlab74/MATLAB_Component_Runtime/v76/sys/os/glnxa64:/software/Matlab74/MATLAB_Component_Runtime/v76/sys/java/jre/glnxa64/jre1.6.0/lib/amd64/native_threads:/software/Matlab74/MATLAB_Component_Runtime/v76/sys/java/jre/glnxa64/jre1.6.0/lib/amd64/server:/software/Matlab74/MATLAB_Component_Runtime/v76/sys/java/jre/glnxa64/jre1.6.0/lib/amd64:/software/Matlab74/MATLAB_Component_Runtime/v76/bin/glnxa64
+
+setenv XAPPLRESDIR ${XAPPLRESDIR}:/software/Matlab74/MATLAB_Component_Runtime/v76/X11/app-defaults
+
+setenv PATH ${PATH}:/software/jimmy/plsmbin
+
