@@ -229,7 +229,7 @@ function plot_allerr;
          end;
 
          % create a new legend, and save the handles
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(gcbf,'LegendHdl4',[{l_hdl} {o_hdl}]);
@@ -250,7 +250,7 @@ function plot_allerr;
             end
          end
 
-         h2 = errorbar(range, orig_corr(range,lv_idx), llcorr(range,lv_idx), ulcorr(range,lv_idx), 'ok');
+         h2 = errorbar(range, orig_corr(range,lv_idx), abs(llcorr(range,lv_idx)), ulcorr(range,lv_idx), 'ok');
 
       end
 

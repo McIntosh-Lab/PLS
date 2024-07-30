@@ -79,8 +79,8 @@ function h01 = init
    rri_file_menu(h01);
 
    h0 = gcbf;
-   copy_axis = copyobj(old_axis, h0);
-   new_axis = copyobj(copy_axis, h01);
+   copy_axis = copyobj_legacy(old_axis, h0);
+   new_axis = copyobj_legacy(copy_axis, h01);
    delete(copy_axis);
    set(new_axis, 'position', [.08 .12 .86 .8]);
 

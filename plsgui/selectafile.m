@@ -482,6 +482,7 @@ function delete_fig
 
     try
        load('pls_profile');
+       
        pls_profile = which('pls_profile.mat');
 
        selectafile_pos = get(gcbf,'position');

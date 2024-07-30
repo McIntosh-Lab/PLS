@@ -344,7 +344,7 @@ function init(old_subjects, num_subj_init, filter)
    subj1_hdls = [c_h1,c_h2,c_h3,c_h4];  	% save handles for subject#1
    setappdata(h0,'Subj_hlist',subj1_hdls);
 
-   subj_template = copyobj(subj1_hdls,h0);
+   subj_template = copyobj_legacy(subj1_hdls,h0);
    set(subj_template,'visible','off');
 
    setappdata(h0,'OldSubjects',old_subjects);
@@ -398,7 +398,7 @@ function SetupSubjectRows()
       subj_hdls = subj_hdls(1:rows,:);
    else					% add new rows
       for i=nr+1:rows,
-         new_c_hdls = copyobj(subj_template,gcf);
+         new_c_hdls = copyobj_legacy(subj_template,gcf);
          subj_hdls = [subj_hdls; new_c_hdls'];
       end;
    end;
@@ -406,7 +406,7 @@ function SetupSubjectRows()
    v = 'Off';
    for i=1:rows,
       % take out the handle list created above, and use it in the following 'label,edit,delete'.
-      % those handles are valid, since they are all obtained from function copyobj() above.
+      % those handles are valid, since they are all obtained from function copyobj_legacy() above.
       new_c_hdls = subj_hdls(i,:);
 
       % init label
@@ -508,7 +508,7 @@ function CreateAddRow()
    subj_template = getappdata(gcf,'SubjectTemplate');
    buttondown_subject = 'rri_input_subject_ui(''BUTTONDOWN_SUBJECTS'');';
 
-   a_hdls = copyobj(subj_template,gcf);
+   a_hdls = copyobj_legacy(subj_template,gcf);
 
    set(a_hdls(1),'String','','Foreground',[0.4 0.4 0.4],'Visible','off', ...
                  'UserData',1);

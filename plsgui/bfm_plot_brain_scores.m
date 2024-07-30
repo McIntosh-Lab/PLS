@@ -312,7 +312,7 @@ function fig = init(plsResultFile, tit_fn)
 	     'tag','LegendMenu');
 %	     'sepa','on', ...
 
-  lv_template = copyobj(lv_h,hh);
+  lv_template = copyobj_legacy(lv_h,hh);
   set(lv_template,'Tag','LVTemplate','Visible','off');
 
   % load the brain scores, conditions, evt_list
@@ -415,7 +415,7 @@ function  SetupLVButtonRows()
       lv_hdls = lv_hdls(1:rows);
    else						% add more rows
       for i=nr+1:rows,
-        new_s_hdls = copyobj(lv_template,gcf);
+        new_s_hdls = copyobj_legacy(lv_template,gcf);
         lv_hdls = [lv_hdls; new_s_hdls'];
       end;
    end;

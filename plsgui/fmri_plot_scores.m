@@ -364,7 +364,7 @@ function fig_hdl = init(b_scores,d_scores,designlv,s,perm_result,perm_splithalf,
 %      set(hh,'Name',sprintf('PLS Scores Plot: %s',PLSresultFile));
 %   end;
 
-   lv_template = copyobj(lv_h,gcf);
+   lv_template = copyobj_legacy(lv_h,gcf);
    set(lv_template,'Tag','LVTemplate','Visible','off');
 
    num_lv = size(b_scores,2);
@@ -430,7 +430,7 @@ function  SetupLVButtonRows()
       lv_hdls = lv_hdls(1:rows);
    else						% add more rows
       for i=nr+1:rows,
-        new_s_hdls = copyobj(lv_template,gcf);
+        new_s_hdls = copyobj_legacy(lv_template,gcf);
         lv_hdls = [lv_hdls; new_s_hdls'];
       end;
    end;
@@ -658,6 +658,9 @@ function PlotBrainDesignScores()
    margin_y = abs((max_y - min_y) / 100);
    
    axes(ax_hdl);
+
+delete(ax_hdl.Legend); % LP 12.07.2018
+
    cla; grid off; hold on;
    
    for grp_idx = 1:num_grp
@@ -793,6 +796,9 @@ function PlotDesignScores()
    end;
 
    axes(ax_hdl);
+
+delete(ax_hdl.Legend); % LP 12.07.2018
+
    cla;hold on;
 
    lv_idx = find(lv_state == 1);
@@ -865,7 +871,7 @@ function PlotDesignScores()
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl2',[{l_hdl} {o_hdl}]);
@@ -937,6 +943,7 @@ end
    %
    ax_hdl = getappdata(gcf,'ScoreAxes_top');
    axes(ax_hdl);
+   delete(ax_hdl.Legend); % LP 12.07.2018   
    cla;hold on;
 
 %   num_contrasts = size(designlv,1);
@@ -991,7 +998,7 @@ end
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl3',[{l_hdl} {o_hdl}]);
@@ -1137,7 +1144,12 @@ function DisplayBrainDesignScores(on_off)
      case {'on'},
         if (design_state == 1),		% need to display design scores
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+           try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+           catch
+           end;           
+           cla; set(h,'Visible','off');
 
            set(getappdata(gcf,'ScoreAxes_top'),'Visible','on');
            PlotDesignScores;
@@ -1146,13 +1158,28 @@ function DisplayBrainDesignScores(on_off)
            PlotBrainDesignScores;
         else
            h = getappdata(gcf,'ScoreAxes_top');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes_bottom');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h);
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','on');
+           axes(h);
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','on');
            PlotBrainDesignScores;
 	end;
 
@@ -1167,17 +1194,37 @@ function DisplayBrainDesignScores(on_off)
 %        DisplayLegend('off');
         if (design_state == 1) 
            h = getappdata(gcf,'ScoreAxes_top');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes_bottom');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes');
-           axes(h); cla; set(h,'Visible','on');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','on');
            PlotDesignScores;
         else
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 	end;
 
    end;  % switch
@@ -1219,7 +1266,12 @@ function DisplayDesignScores(on_off)
      case {'on'},
         if (brain_design_state == 1),	% need to display brain/design scores
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            set(getappdata(gcf,'ScoreAxes_top'),'Visible','on');
            PlotDesignScores;
@@ -1228,13 +1280,28 @@ function DisplayDesignScores(on_off)
            PlotBrainDesignScores;
         else
            h = getappdata(gcf,'ScoreAxes_top');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes_bottom');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','on');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','on');
            PlotDesignScores;
 	end;
 
@@ -1248,16 +1315,31 @@ function DisplayDesignScores(on_off)
          end;
         if (brain_design_state == 1),	% need to display brain/design scores
            h = getappdata(gcf,'ScoreAxes_top');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes_bottom');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+             try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+             catch
+             end;
+           cla; set(h,'Visible','off');
 
            set(getappdata(gcf,'ScoreAxes'),'Visible','on'); 
            PlotBrainDesignScores;
         else
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','off');
 	end;
 
    end;  % switch
@@ -1325,13 +1407,28 @@ function DisplayDesignLV(on_off)
            end;
 
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+              try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+              catch
+              end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes_top');
-           axes(h); cla; set(h,'Visible','on');
+           axes(h); 
+             try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+             catch
+             end;
+             cla; set(h,'Visible','on');
 
            h = getappdata(gcf,'ScoreAxes_bottom');
-           axes(h); cla; set(h,'Visible','on');
+           axes(h); 
+            try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+            catch
+            end;
+           cla; set(h,'Visible','on');
 
            PlotDesignLV;
 
@@ -1344,14 +1441,29 @@ function DisplayDesignLV(on_off)
             end;
          end;
            h = getappdata(gcf,'ScoreAxes'); 
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+             try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+             catch
+             end;
+           cla; set(h,'Visible','off');
 
            h = getappdata(gcf,'ScoreAxes_top');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+               try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+               catch
+               end;
+               cla; set(h,'Visible','off');
 %           PlotDesignScores;
 
            h = getappdata(gcf,'ScoreAxes_bottom');
-           axes(h); cla; set(h,'Visible','off');
+           axes(h); 
+                try % LP 12.07.2018
+                  delete(h.Legend); % LP 12.07.2018   
+                catch
+                end;
+           cla; set(h,'Visible','off');
 %	   PlotBrainDesignScores;
 
    end;  % switch

@@ -624,7 +624,7 @@ function show_report_page(page_num),
          cluster_idx = cluster_data_idx(3,idx);
          c_data = cluster_info.data{cluster_lag};
 
-         h = copyobj(standard_text_obj,axes_h);			% cluster # 
+         h = copyobj_legacy(standard_text_obj,axes_h);			% cluster # 
          cluster_num = sprintf('%3d',cluster_id);
          set(h, 'String',cluster_num, ...
 		'Position',[h_pos(1) v_pos(v_idx) 0], ...
@@ -632,21 +632,21 @@ function show_report_page(page_num),
 	 h_list = [h_list h];
 
          if (idx==start_row | cluster_idx==1)
- 	    h = copyobj(standard_text_obj,axes_h);		% lag
+ 	    h = copyobj_legacy(standard_text_obj,axes_h);		% lag
 	    set(h, 'String',num2str(cluster_lag-1), ...
 		   'Position',[h_pos(2) v_pos(v_idx) 0], ...
 		   'Visible','on'); 
 	    h_list = [h_list h];
          end;
 
-	 h = copyobj(standard_text_obj,axes_h);			% peak xyz
+	 h = copyobj_legacy(standard_text_obj,axes_h);			% peak xyz
          peak_xyz_str = sprintf('[%3d %3d %3d]',c_data.peak_xyz(cluster_idx,:));
 	 set(h, 'String',peak_xyz_str, ...
 		'Position',[h_pos(3) v_pos(v_idx) 0], ...
 		'Visible','on'); 
 	 h_list = [h_list h];
 
-	 h = copyobj(standard_text_obj,axes_h);			% peak loc
+	 h = copyobj_legacy(standard_text_obj,axes_h);			% peak loc
          peak_loc_str = sprintf('[%6.1f %6.1f %6.1f]', ...
 					c_data.peak_loc(cluster_idx,:));
 	 set(h, 'String',peak_loc_str, ...
@@ -654,7 +654,7 @@ function show_report_page(page_num),
 		'Visible','on'); 
 	 h_list = [h_list h];
 
-	 h = copyobj(standard_text_obj,axes_h);			% peak value
+	 h = copyobj_legacy(standard_text_obj,axes_h);			% peak value
          peak_value_str = sprintf('%8.4f',c_data.peak_values(cluster_idx));
 	 set(h, 'String',peak_value_str, ...
 		'Position',[h_pos(5) v_pos(v_idx) 0], ...
@@ -662,7 +662,7 @@ function show_report_page(page_num),
 	 h_list = [h_list h];
 
 	 if (h_pvalue_pos ~= 0)
-	    h = copyobj(standard_text_obj,axes_h);		% P value
+	    h = copyobj_legacy(standard_text_obj,axes_h);		% P value
 	    p_value = ratio2p(abs(c_data.peak_values(cluster_idx)), ...
 						0,1 );
             p_value_str = sprintf('(%6.4f)',p_value);
@@ -672,7 +672,7 @@ function show_report_page(page_num),
 	    h_list = [h_list h];
          end;
 
-	 h = copyobj(standard_text_obj,axes_h);			% cluster size
+	 h = copyobj_legacy(standard_text_obj,axes_h);			% cluster size
          size_str = sprintf('%4d',c_data.size(cluster_idx));
 	 set(h, 'String',size_str, ...
 		'Position',[h_pos(6) v_pos(v_idx) 0], ...
@@ -1256,7 +1256,7 @@ function setup_header();
    str_field = 1; pos_field = 2; type_field = 3;
    for i=1:length(header_text),
      if (header_text{i}{type_field}<0 | report_type==header_text{i}{type_field})
- 	 h = copyobj(standard_text_obj,axes_h);
+ 	 h = copyobj_legacy(standard_text_obj,axes_h);
 	 text_pos = header_text{i}{pos_field}; 
 	 text_pos(2) = total_height - text_pos(2);    % text pos=[x height-y z]
 	 set(h,'String', header_text{i}{str_field},  ...
@@ -1292,7 +1292,7 @@ function setup_footer(),
 
    str_field = 1; pos_field = 2; tag_field = 3; 
    for i=1:length(key_text),
-      h = copyobj(standard_text_obj,axes_h);
+      h = copyobj_legacy(standard_text_obj,axes_h);
       bd_fn = sprintf('fmri_cluster_report(''%s'');',key_text{i}{tag_field});
       set(h,'String', key_text{i}{str_field},  ...
 	    'Position',key_text{i}{pos_field}, ...
@@ -1312,7 +1312,7 @@ function setup_footer(),
 
    source_line = sprintf('Source: %s',source_file);
 
-   h = copyobj(standard_text_obj,axes_h);
+   h = copyobj_legacy(standard_text_obj,axes_h);
 
    x = 0.03;
    y = 0.08;
@@ -1342,7 +1342,7 @@ function setup_footer(),
 						cluster_info.min_dist);
    parameters_line = sprintf('%s, %s, %s, %s\n%s, %s, %s', ...
 				lv_str,thresh_str,thresh_str2,min_size_str,peak_thresh_str,peak_thresh_str2,min_dist_str);
-   h = copyobj(standard_text_obj,axes_h);
+   h = copyobj_legacy(standard_text_obj,axes_h);
 
    y = 0.05;
 

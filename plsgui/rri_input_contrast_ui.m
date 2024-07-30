@@ -595,7 +595,7 @@ end
    contrast1_hdls = [c_h1,c_h2,c_h3,c_h4,c_h5];  	
    setappdata(h0,'Contrast_hlist',contrast1_hdls);
 
-   contrast_template = copyobj(contrast1_hdls,h0);
+   contrast_template = copyobj_legacy(contrast1_hdls,h0);
    for i=1:length(contrast_template),
       set(contrast_template(i),'visible','off','Tag', sprintf('Template%d',i));
    end;
@@ -667,7 +667,7 @@ function SetupContrastRows()
       contrast_hdls = contrast_hdls(1:rows,:);
    else					% add new rows
       for i=nr+1:rows,
-         new_c_hdls = copyobj(contrast_template,gcf);
+         new_c_hdls = copyobj_legacy(contrast_template,gcf);
          contrast_hdls = [contrast_hdls; new_c_hdls'];
       end;
    end;
@@ -793,7 +793,7 @@ function CreateAddRow()
 
    contrast_template = getappdata(gcf,'ContrastTemplate');
 
-   a_hdls = copyobj(contrast_template,gcf);
+   a_hdls = copyobj_legacy(contrast_template,gcf);
 
    set(a_hdls(1),'String','','Foreground',[0 0 0],'Visible','off', ...
                  'UserData',1);

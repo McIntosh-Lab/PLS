@@ -368,7 +368,7 @@ end
      end;
 
      % create a new legend, and save the handles
-%     [l_hdl, o_hdl] = legend(subj_name, 0);
+%     [l_hdl, o_hdl] = legend(subj_name, 'Location', 'northeast');
  %    legend_txt(o_hdl);
   %   set(l_hdl,'color',[0.9 1 0.9]);
 %     setappdata(gcf,'LegendHdl',[{l_hdl} {o_hdl}]);
@@ -464,7 +464,7 @@ end
         end;
 
         % create a new legend, and save the handles
-        [l_hdl, o_hdl] = legend(cond_name, 0);
+        [l_hdl, o_hdl] = legend(cond_name, 'Location', 'northeast');
         legend_txt(o_hdl);
         set(l_hdl,'color',[0.9 1 0.9]);
         setappdata(gcf,'LegendHdl',[{l_hdl} {o_hdl}]);
@@ -484,7 +484,7 @@ end
      end;
 
      if ~isempty(st_data.ulcorr)
-        h2=errorbar(1:length(llcorr), orig_corr(mask), llcorr(mask), ulcorr(mask), 'ok');
+        h2=errorbar(1:length(llcorr), orig_corr(mask), abs(llcorr(mask)), ulcorr(mask), 'ok');
      end
 
      hold off;

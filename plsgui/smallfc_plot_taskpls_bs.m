@@ -407,7 +407,7 @@ function h0 = init(result_file, is_design_plot, tit_fn)
 	'String','', ...
 	'Tag','MessageLine');
 
-   lv_template = copyobj(lv_h,gcf);
+   lv_template = copyobj_legacy(lv_h,gcf);
    set(lv_template,'Tag','LVTemplate','Visible','off');
    curr_lv_state = zeros(1,num_lv); 
    curr_lv_state(1) = 1;
@@ -479,7 +479,7 @@ function  SetupLVButtonRows()
       lv_hdls = lv_hdls(1:rows);
    else						% add more rows
       for i=nr+1:rows,
-        new_s_hdls = copyobj(lv_template,gcf);
+        new_s_hdls = copyobj_legacy(lv_template,gcf);
         lv_hdls = [lv_hdls; new_s_hdls'];
       end;
    end;
@@ -662,7 +662,7 @@ function PlotBrainDesignScores
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl',[{l_hdl} {o_hdl}]);
@@ -794,7 +794,7 @@ function PlotDesignScores
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl2',[{l_hdl} {o_hdl}]);
@@ -938,7 +938,7 @@ end
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl3',[{l_hdl} {o_hdl}]);
@@ -1645,7 +1645,7 @@ function view_axis
          legend_state = get(findobj(h0,'Tag','LegendMenu'),'Userdata');
 
          axes(axis_old);
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(h0, 'LegendHdl',[{l_hdl} {o_hdl}]);
@@ -1657,7 +1657,7 @@ function view_axis
 
          figure(h01)
          axes(axis_new);
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(h01, 'LegendHdl',[{l_hdl} {o_hdl}]);
@@ -1675,7 +1675,7 @@ function view_axis
          legend_state = get(findobj(h0,'Tag','LegendMenu'),'Userdata');
 
          axes(axis_old);
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(h0, 'LegendHdl2',[{l_hdl} {o_hdl}]);
@@ -1687,7 +1687,7 @@ function view_axis
 
          figure(h01)
          axes(axis_new);
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(h01, 'LegendHdl2',[{l_hdl} {o_hdl}]);
@@ -1705,7 +1705,7 @@ function view_axis
          legend_state = get(findobj(h0,'Tag','LegendMenu'),'Userdata');
 
          axes(axis_old);
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(h0, 'LegendHdl3',[{l_hdl} {o_hdl}]);
@@ -1717,7 +1717,7 @@ function view_axis
 
          figure(h01)
          axes(axis_new);
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl); 
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(h01, 'LegendHdl3',[{l_hdl} {o_hdl}]);
@@ -1931,7 +1931,7 @@ function view_dlv
          end;
 
          % create a new legend, and save the handles
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(gcbf,'LegendHdl3',[{l_hdl} {o_hdl}]);
@@ -2082,7 +2082,7 @@ function PlotBrainScores
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl3',[{l_hdl} {o_hdl}]);
@@ -2117,7 +2117,7 @@ function PlotBrainScores
    end
 
    if ~isempty(ulusc)
-      h2 = errorbar(range, orig_usc(range,lv_idx), llusc(range,lv_idx), ulusc(range,lv_idx), 'ok');
+      h2 = errorbar(range, orig_usc(range,lv_idx), abs(llusc(range,lv_idx)), ulusc(range,lv_idx), 'ok');
    end
 
    hold off;

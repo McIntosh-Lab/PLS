@@ -250,7 +250,7 @@ function init(old_conditions, old_subj_files)
    cond1_hdls = [c_h1,c_h2,c_h3];  	% save handles for condition#1
    setappdata(h0,'Cond_hlist',cond1_hdls);
 
-   cond_template = copyobj(cond1_hdls,h0);
+   cond_template = copyobj_legacy(cond1_hdls,h0);
    set(cond_template,'visible','off');
 
    setappdata(h0,'OldConditions',old_conditions);
@@ -343,7 +343,7 @@ function SetupConditionRows()
       cond_hdls = cond_hdls(1:rows,:);
    else					% add new rows to 'rows' amount
       for i=nr+1:rows,
-         new_c_hdls = copyobj(cond_template,gcf);
+         new_c_hdls = copyobj_legacy(cond_template,gcf);
          cond_hdls = [cond_hdls; new_c_hdls'];
       end;
    end
@@ -351,7 +351,7 @@ function SetupConditionRows()
    v = 'off';
    for i=1:rows
       % take out the handle list created above, and use it in the following 'label,edit,delete'.
-      % those handles are valid, since they are all obtained from function copyobj() above.
+      % those handles are valid, since they are all obtained from function copyobj_legacy() above.
       new_c_hdls = cond_hdls(i,:);
 
       % init label
@@ -433,7 +433,7 @@ function CreateAddRow()
 
    cond_template = getappdata(gcf,'ConditionTemplate');
 
-   a_hdls = copyobj(cond_template,gcf);
+   a_hdls = copyobj_legacy(cond_template,gcf);
 
    set(a_hdls(1),'String','','Foreground',[0.4 0.4 0.4],'Visible','off', ...
                  'UserData',1);

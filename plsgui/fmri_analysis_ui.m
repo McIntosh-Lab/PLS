@@ -1109,7 +1109,7 @@ function Init()
    group_hdls = [g_h1, g_h2, g_h3, g_h4];	
    setappdata(h0,'Group_hlist',group_hdls);
 
-   group_template = copyobj(group_hdls,h0);
+   group_template = copyobj_legacy(group_hdls,h0);
    set(group_template,'visible','off','Tag','GroupUIControls');
 
    setappdata(h0,'GroupTemplate',group_template);
@@ -1178,7 +1178,7 @@ function SetupGroupRows()
       group_hdls = group_hdls(1:rows,:);
    else					% add new rows
       for i=nr+1:rows,
-         new_g_hdls = copyobj(group_template,gcf);
+         new_g_hdls = copyobj_legacy(group_template,gcf);
          group_hdls = [group_hdls; new_g_hdls'];
       end;
    end;
@@ -1281,7 +1281,7 @@ function CreateAddRow()
 
    group_template = getappdata(gcf,'GroupTemplate');
 
-   a_hdls = copyobj(group_template,gcf);
+   a_hdls = copyobj_legacy(group_template,gcf);
 
    set(a_hdls(1),'String','','Foreground',[0.4 0.4 0.4],'Visible','off', ...
                  'UserData',1);
