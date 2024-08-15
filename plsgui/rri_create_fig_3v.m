@@ -23,7 +23,7 @@ function rri_create_fig_3v
    set(nii_view.handles.cbarminmax_axes, 'visible', 'off');
    set(nii_view.handles.cbar_axes, 'visible', 'off');
 
-   cbar_hdl = copyobj(getappdata(old_fig,'Colorbar'), s.fig);
+   cbar_hdl = copyobj_legacy(getappdata(old_fig,'Colorbar'), s.fig);
    set(cbar_hdl,'pos',get(nii_view.handles.cbar_axes,'pos'));
 
    return;
@@ -72,7 +72,7 @@ function rri_create_fig_3v
 	'colormap', get(old_fig, 'colormap'), ...
 	'name', get(old_fig, 'name'));
 
-   ax_hdl = copyobj([nii_view.handles.axial_axes, nii_view.handles.coronal_axes, ...
+   ax_hdl = copyobj_legacy([nii_view.handles.axial_axes, nii_view.handles.coronal_axes, ...
 	nii_view.handles.sagittal_axes], new_fig);
 
    set(ax_hdl(1), 'position', axial_ax_pos);

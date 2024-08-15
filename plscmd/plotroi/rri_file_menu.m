@@ -12,7 +12,7 @@
 
 function rri_file_menu(action, varargin)
 
-   if isnumeric(action)
+   if isnumeric(action) || isgraphics(action)
       fig = action;
       action = 'init';
    end

@@ -410,7 +410,7 @@ function erp_showplot_ui(fig)
          k = 1;
 
          for j = xtick_pos
-            xtick_template(k,:) = copyobj(xtick_template_hdl, ha);
+            xtick_template(k,:) = copyobj_legacy(xtick_template_hdl, ha);
             set(xtick_template(k,:),'xdata', ...
                get(xtick_template(k,:),'xdata') ...
                + j/timepoint);
@@ -457,7 +457,7 @@ function erp_showplot_ui(fig)
          k = 1;
 
          for j = ytick_pos
-            ytick_template(k,:) = copyobj(ytick_template_hdl, ha);
+            ytick_template(k,:) = copyobj_legacy(ytick_template_hdl, ha);
             set(ytick_template(k,:),'ydata', ...
                get(ytick_template(k,:),'ydata') ...
                +j/(wave_top - wave_bottom));
@@ -475,7 +475,7 @@ function erp_showplot_ui(fig)
          offset2 = 0;			% legend axis offset to bottom
          offset3 = 0.01;		% axis label offset to axis
 
-         laxis_hdl = copyobj(axis_template, ha);
+         laxis_hdl = copyobj_legacy(axis_template, ha);
 
          for j=1:2			% just for 2 axis line
             set(laxis_hdl(j), 'visible', 'on', ...
@@ -489,7 +489,7 @@ function erp_showplot_ui(fig)
          %  create legend tickmark
          %
          if ~isempty(xtick_template)
-            lxtick_hdl = copyobj(xtick_template, ha);
+            lxtick_hdl = copyobj_legacy(xtick_template, ha);
             for j=1:size(lxtick_hdl,1) % for all the components on xtick
                set(lxtick_hdl(j), 'visible', 'on', ...
                   'xdata',eta*get(lxtick_hdl(j),'xdata') ...
@@ -517,7 +517,7 @@ function erp_showplot_ui(fig)
             lxtick_hdl = [];
          end
          if ~isempty(ytick_template)
-            lytick_hdl = copyobj(ytick_template, ha);
+            lytick_hdl = copyobj_legacy(ytick_template, ha);
             for j=1:size(lytick_hdl,1) % for all the components on ytick
                set(lytick_hdl(j), 'visible', 'on', ...
                   'xdata',eta*get(lytick_hdl(j),'xdata') ...
@@ -613,7 +613,7 @@ function erp_showplot_ui(fig)
 
             %  draw sub axes
             %
-            axis_hdl(:,i) = copyobj(axis_template, ha);
+            axis_hdl(:,i) = copyobj_legacy(axis_template, ha);
 
             for j=1:size(axis_hdl,1)	% for all the components on axis
                set(axis_hdl(j,i), ...
@@ -622,7 +622,7 @@ function erp_showplot_ui(fig)
             end
 
             if ~isempty(xtick_template)
-               xtick_hdl(:,i) = copyobj(xtick_template, ha);
+               xtick_hdl(:,i) = copyobj_legacy(xtick_template, ha);
                for j=1:size(xtick_hdl,1) % for all the components on xtick
                   set(xtick_hdl(j,i), ...
                      'xdata',eta*get(xtick_hdl(j,i),'xdata')+x(i), ...
@@ -636,7 +636,7 @@ function erp_showplot_ui(fig)
             end
 
             if ~isempty(ytick_template)
-               ytick_hdl(:,i) = copyobj(ytick_template, ha);
+               ytick_hdl(:,i) = copyobj_legacy(ytick_template, ha);
                for j=1:size(ytick_hdl,1) % for all the components on ytick
                   set(ytick_hdl(j,i), ...
                      'xdata',eta*get(ytick_hdl(j,i),'xdata')+x(i), ...

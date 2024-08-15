@@ -1051,7 +1051,7 @@ function  plot_response_fn()
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(intensity_legend, subjects, 0);
+      [l_hdl, o_hdl] = legend(intensity_legend, subjects, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl',[{l_hdl} {o_hdl}]);
@@ -1602,7 +1602,7 @@ end
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(cond_name, 0);
+      [l_hdl, o_hdl] = legend(cond_name, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl',[{l_hdl} {o_hdl}]);
@@ -1629,7 +1629,7 @@ if(0)
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(intensity_legend, behavname, 0);
+      [l_hdl, o_hdl] = legend(intensity_legend, behavname, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl',[{l_hdl} {o_hdl}]);

@@ -500,7 +500,7 @@ function init(condition, selected_conditions, old_dir, ...
     imgfile1_hdls = [c_h1,c_h2,c_h3,c_h4];	% save handles for the 1st one
     setappdata(h0,'imgfile_hlist', imgfile1_hdls);
 
-    imgfile_template = copyobj(imgfile1_hdls,h0);
+    imgfile_template = copyobj_legacy(imgfile1_hdls,h0);
     set(imgfile_template, 'visible', 'off');
     setappdata(h0,'imgfile_template', imgfile_template);
     setappdata(h0,'saved_map',{});		% init saved subj map list
@@ -808,7 +808,7 @@ function SetupConditionRows()
         imgfile_hdls = imgfile_hdls(1:rows, :);
     else							% add new rows
         for i = nr + 1:rows
-            new_c_hdls = copyobj(imgfile_template, gcf);
+            new_c_hdls = copyobj_legacy(imgfile_template, gcf);
             imgfile_hdls = [imgfile_hdls; new_c_hdls'];		% stack imgfile_hdls
         end
     end
@@ -819,7 +819,7 @@ function SetupConditionRows()
 	% take out the handle list created above, and use it
 	% in the following 'idx,name,colon,combo'.
 	% those handles are valid, since they are all obtained
-	% from function copyobj() above.
+	% from function copyobj_legacy() above.
 	%
 
         new_c_hdls = imgfile_hdls(i,:);

@@ -640,7 +640,7 @@ function init(run_info,num_runs,conditions),
 
    setappdata(gcf,'DataDirectory',curr);
   
-   onset_template = copyobj([t1 t2 t3 t4 t5],h0);
+   onset_template = copyobj_legacy([t1 t2 t3 t4 t5],h0);
    set(onset_template(1),'Tag','ConditionNameLabelTemplate','Visible','off');
    set(onset_template(2),'Tag','BlockOnsetEditTemplate','Visible','off');
    set(onset_template(3),'Tag','BlockLengthEditTemplate','Visible','off');
@@ -684,7 +684,7 @@ function  SetupBlockOnsetRows()
       onset_hdls = onset_hdls(1:rows,:);
    else						% add more rows
       for i=nr+1:rows,
-        new_s_hdls = copyobj(onset_template,gcf);
+        new_s_hdls = copyobj_legacy(onset_template,gcf);
         onset_hdls = [onset_hdls; new_s_hdls'];
       end;
    end;

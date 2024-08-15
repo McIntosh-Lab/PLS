@@ -367,7 +367,7 @@ function hh = init(is_design_plot, tit_fn)
 %      set(hh,'Name',sprintf('PLS Scores Plot: %s',PLSresultFile));
 %   end;
 
-   lv_template = copyobj(lv_h,gcf);
+   lv_template = copyobj_legacy(lv_h,gcf);
    set(lv_template,'Tag','LVTemplate','Visible','off');
 
    [b_scores,d_scores,designlv,s,perm_result,conditions, ...
@@ -434,7 +434,7 @@ function  SetupLVButtonRows()
       lv_hdls = lv_hdls(1:rows);
    else						% add more rows
       for i=nr+1:rows,
-        new_s_hdls = copyobj(lv_template,gcf);
+        new_s_hdls = copyobj_legacy(lv_template,gcf);
         lv_hdls = [lv_hdls; new_s_hdls'];
       end;
    end;
@@ -781,7 +781,7 @@ function PlotDesignScores()
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl2',[{l_hdl} {o_hdl}]);
@@ -912,7 +912,7 @@ end
       end;
 
       % create a new legend, and save the handles
-      [l_hdl, o_hdl] = legend(conditions, 0);
+      [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
       legend_txt(o_hdl);
       set(l_hdl,'color',[0.9 1 0.9]);
       setappdata(gcf,'LegendHdl3',[{l_hdl} {o_hdl}]);

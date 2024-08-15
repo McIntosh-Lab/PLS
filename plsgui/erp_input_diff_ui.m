@@ -285,7 +285,7 @@ function h01 = init(h0)
    couple1_hdls = [c_h1,c_h2,c_h3,c_h4,c_h5];		% save handles for row
    setappdata(h01,'couple_hlist',couple1_hdls);
 
-   couple_template = copyobj(couple1_hdls,h01);
+   couple_template = copyobj_legacy(couple1_hdls,h01);
    set(couple_template,'visible','off');
 
    setappdata(h01,'old_couple_lst',old_couple_lst);
@@ -336,7 +336,7 @@ function SetupCoupleRows()
       couple_hdls = couple_hdls(1:rows,:);
    else					% add new rows to 'rows' amount
       for i=nr+1:rows,
-         new_c_hdls = copyobj(couple_template,gcf);
+         new_c_hdls = copyobj_legacy(couple_template,gcf);
          couple_hdls = [couple_hdls; new_c_hdls'];
       end;
    end
@@ -344,7 +344,7 @@ function SetupCoupleRows()
    v = 'off';
    for i=1:rows
       % take out the handle list created above, and use it in the following 'label,edit,delete'.
-      % those handles are valid, since they are all obtained from function copyobj() above.
+      % those handles are valid, since they are all obtained from function copyobj_legacy() above.
       new_c_hdls = couple_hdls(i,:);
 
       % init label
@@ -442,7 +442,7 @@ function CreateAddRow()
    edit_cbf = [edit_cbf, '''Use Add Button to add condition couple'');'];
 
    couple_template = getappdata(gcf,'couple_template');
-   a_hdls = copyobj(couple_template,gcf);
+   a_hdls = copyobj_legacy(couple_template,gcf);
 
 
    set(a_hdls(1),'String','','Foreground',[0.4 0.4 0.4],'Visible','off', ...

@@ -226,7 +226,7 @@ function plot_dlv_scores
          end;
 
          % create a new legend, and save the handles
-         [l_hdl, o_hdl] = legend(conditions, 0);
+         [l_hdl, o_hdl] = legend(conditions, 'Location', 'northeast');
          legend_txt(o_hdl);
          set(l_hdl,'color',[0.9 1 0.9]);
          setappdata(gcbf,'LegendHdl3',[{l_hdl} {o_hdl}]);

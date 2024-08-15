@@ -887,7 +887,8 @@ end
 
   while ~done
     try
-       eval(['save ''' resultFile ''' ' saved_info]);
+       %eval(['save ''' resultFile ''' ' saved_info]);
+       eval(['save ''' resultFile ''' ' saved_info ' ' '-v7.3']);
        done = 1;
     catch
        if findstr('BfMRIsessiondata.mat', fn)

@@ -72,7 +72,7 @@ function txtbox_hdl = rri_txtbox(varargin)
    %
    try
       txtbox_hdl = findobj(CurrentFigure, 'tag', 'rri_txtbox');
-      if txtbox_hdl, delete(txtbox_hdl); end;
+      if isvalid(txtbox_hdl), delete(txtbox_hdl); end;
    catch
    end
 
@@ -116,7 +116,6 @@ function txtbox_hdl = rri_txtbox(varargin)
         'FontWeight', fntweight, ...
         'FontSize', fnt, ...
 	'box','on', ...
-	'drawmode','fast', ...
 	'nextplot','add', ...
         'xtick', [-1], ...
         'ytick', [-1], ...
@@ -124,6 +123,14 @@ function txtbox_hdl = rri_txtbox(varargin)
 	'user',CurrentAxes, ...
 	'tag','rri_txtbox', ...
         'position', pos);
+
+   % to avoid "The DrawMode property will be removed in a future release" warning in R2014b
+   if verLessThan('matlab', '8.4.0') % R2014b
+     set(txtbox_hdl,'drawmode', 'fast');
+   else
+     set(txtbox_hdl,'sortmethod', 'childorder');
+   end
+
 
    if ishandle(varargin{1})
       items = (nargin-1)/2;
