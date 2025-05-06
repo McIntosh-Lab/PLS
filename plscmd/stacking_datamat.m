@@ -1,4 +1,4 @@
-function stacked_datamat = stacking_datamat(datamat_lst, single_cond_lst, progress_hdl)
+function stacked_datamat = stacking_datamat(datamat_lst, single_cond_lst, progress_hdl,silencerepro)
 
    if ~exist('single_cond_lst','var')
       single_cond_lst = [];
@@ -8,6 +8,9 @@ function stacked_datamat = stacking_datamat(datamat_lst, single_cond_lst, progre
       progress_hdl = [];
    end
 
+   if ~exist('silencerepro','var')
+      silencerepro = 0;
+   end
    num_groups = length(datamat_lst);
 
    %  init variable for the following loop
@@ -17,13 +20,13 @@ function stacked_datamat = stacking_datamat(datamat_lst, single_cond_lst, progre
    %  loop accross the groups, and
    %  calculate datamatcorrs for each group
    %
-   if isempty(progress_hdl)
-      fprintf('Stacking datamat from group:');
+   if isempty(progress_hdl) && silencerepro==0
+        fprintf('Stacking datamat from group:');
    end
 
    for g = 1:num_groups
 
-      if isempty(progress_hdl)
+      if isempty(progress_hdl) && silencerepro ==0
          fprintf(' %d', g);
       end
 
@@ -36,7 +39,7 @@ function stacked_datamat = stacking_datamat(datamat_lst, single_cond_lst, progre
       end
    end
 
-   if isempty(progress_hdl)
+   if isempty(progress_hdl) && silencerepro==0
       fprintf('\n');
    end
 

@@ -29,7 +29,11 @@
 %	option.meancentering_type = [0] | 1 | 2 | 3
 %	option.cormode = [0] | 2 | 4 | 6
 %	option.boot_type = ['strat'] | 'nonstrat'
-%	
+%   option.repro_splithalf = ( single non-negative integer )
+%   option.repro_lv = ( single non-negative integer )
+%   option.repro_nullflag = [1] | 0
+%   option.repro_CI = ( [95] single number between 0 and 100 )
+%
 %	Options description in detail:
 %	==============================
 %
@@ -302,7 +306,7 @@
 %		cormode:	Use Natasha's correlation mode if it
 %				is not 0.
 %
-
+% TODO: ADD DESCRIPTION OF REPRODUCIBILITY SPECIFIED VARIABLES & RESULTS 
 %   Created on 05-JAN-2005 by Jimmy Shen
 %   Last update as part of Plscmd.zip: 01-FEB-2011
 %   Last update as part of Pls.zip: 16-MAY-2012
@@ -333,7 +337,7 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
    if isempty(k) | ~isnumeric(k) | length(k) ~= 1
       error('num_cond should be a number represents the number of conditions.');
    end
-
+   
    num_cond = k;
    progress_hdl = [];
    method = 1;
@@ -350,7 +354,12 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
    cormode = 0;
    boot_type = 'strat';
    nonrotated_boot = 0;
-
+   % Set default for split-half & split-half test train resampling
+   repro_splithalf = 0;
+   repro_lv = 1; % number of lvs to assess
+   repro_CI = 95; % 95% confidence interval
+   repro_nullflag = 1; %default to null test
+   
    if nargin == 4 & ~isempty(opt)
 
       if ~isstruct(opt)
@@ -552,6 +561,33 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
          error('Cannot run single subject analysis with nonstrat boot type');
       end
    end
+
+% Error handling for split-half & split-half test traing resampling
+   if isfield(opt,'repro_splithalf')
+      repro_splithalf = opt.repro_splithalf;
+      if isempty(repro_splithalf) | repro_splithalf < 0 | round(repro_splithalf) ~= repro_splithalf
+          error('Field "repro_splithalf" should be a non-negative integer');
+      end
+   end
+
+   if isfield(opt,'repro_CI')
+     repro_CI = opt.repro_CI;
+     if isempty(repro_CI) | repro_CI < 0 | repro_CI > 100
+        error('Field "repro_CI" should be within 0 and 100');
+     end
+   end   
+   if isfield(opt,'repro_lv')
+      repro_lv = opt.repro_lv;
+      if isempty(repro_lv) | repro_lv <= 0 | round(repro_lv) ~= repro_lv
+          error('Field "repro_lv" must be a positive integer greater than 0');
+      end
+   end
+    if isfield(opt,'repro_nullflag')
+        repro_nullflag = opt.repro_nullflag;
+        if isempty(repro_nullflag) || ~isnumeric(repro_nullflag) || ~isscalar(repro_nullflag) || ~ismember(repro_nullflag, [0, 1])
+        error('Field "repro_nullflag" must be either 0 or 1.');
+        end
+    end
 
    %  init
    %
@@ -780,15 +816,19 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
    if ~isempty(single_cond_lst)
       stacked_datamat = single_cond_lst{1};
    else
+      if isfield(opt,'silencerepro')
+        stacked_datamat = stacking_datamat(datamat_lst, single_cond_lst, progress_hdl,1);
+      else
       stacked_datamat = stacking_datamat(datamat_lst, single_cond_lst, progress_hdl);
+      end
    end
 
    %------------------------------------------_____________________________
 
    %  Calculate Covariance / Correlation data
    %
-   if isempty(progress_hdl)
-      disp(' '); disp('Calculating Covariance / Correlation data ...');
+   if isempty(progress_hdl) && ~isfield(opt, 'silencerepro')
+         disp(' '); disp('Calculating Covariance / Correlation data ...');
    else
       rri_progress_ui(progress_hdl,'',1);
       rri_progress_ui(progress_hdl, '', ...
@@ -816,8 +856,8 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
       result.datamatcorrs_lst = datamatcorrs_lst;
    end
 
-   if isempty(progress_hdl)
-      disp('Calculating LVs ...');
+   if isempty(progress_hdl) && ~isfield(opt, 'silencerepro')
+        disp('Calculating LVs ...');
    else
       rri_progress_ui(progress_hdl, '', 'Calculating LVs ...');
    end
@@ -825,7 +865,7 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
    if ismember(method,[2 5 6])	% different computation for non-rotated PLS
 
       crossblock = stacked_designdata' * datamatsvd;
-
+        
       if nonrotated_boot
          u = normalize(crossblock');
          normalized_u = normalize(u);
@@ -900,8 +940,8 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
    result.s = s;
    result.v = v;
 
-   if isempty(progress_hdl)
-      disp('Calculating Scores ...');
+   if isempty(progress_hdl) && ~isfield(opt, 'silencerepro')
+        disp('Calculating Scores ...');
    else
       rri_progress_ui(progress_hdl, '', 'Calculating Scores ...');
    end
@@ -2578,7 +2618,33 @@ function result = pls_analysis(datamat_lst, num_subj_lst, k, opt)
       result.boot_result.zero_u_se = test_zeros;
 %      result.boot_result.zero_v_se = test_zeros_v;
 
+
    end	% if boot
+       %-------------------------_______________________-----------------------
+%%%%% REPRODUCIBILITY: SPLIT HALF & SPLIT-HALF TEST TRAIN RESAMPLING %%%%%%
+    if repro_splithalf > 0
+        % Handle if user-specified number of LVs is too high.
+        if repro_lv > length(result.s)
+            repro_lv = length(result.s);
+            fprintf("The requested number of LVs for split-half resampling exceeds the available LVs. %d LVs will be assessed.", repro_lv);
+        end
+
+        % Run split-half reproducibility test module
+        [repro_result,splitflag] = split_half_PLS_module(datamat_lst,stacked_behavdata,...
+            num_cond,repro_splithalf,repro_lv,repro_CI,repro_nullflag,opt);
+
+        % Append results
+        result.repro.splithalf=repro_result;
+        result.repro.splithalf_flag=splitflag;
+
+        % Run split-half test train reproducibility test module
+        [repro_result_tt,splitflag_tt] = split_half_PLS_TestTrain_module(datamat_lst,stacked_behavdata,...
+            num_cond,repro_splithalf,repro_nullflag,opt);
+    
+        % Append results
+        result.repro.testtrain=repro_result_tt;
+        result.repro.testtrain_flag=splitflag_tt;
+    end
 
 
    result.other_input.meancentering_type = meancentering_type;
