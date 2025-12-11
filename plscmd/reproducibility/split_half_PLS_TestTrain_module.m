@@ -240,5 +240,5 @@ disp("Working on split-half test-train resampling ...")
             pls_repro_tt.z_null(i)=mean(pls_repro_tt.pls_s_test_null(i,i,:),'omitnan')/std(pls_repro_tt.pls_s_test_null(i,i,:),'omitnan');   
         end
     end
-pls_repro.idx_all_splits = idx_all_splits;
-pls_repro.null_idx_all_splits = null_idx_all_splits;
+pls_repro_tt.idx_all_splits = idx_all_splits;
+pls_repro_tt.null_idx_all_splits = null_idx_all_splits;
